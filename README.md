@@ -6,6 +6,12 @@ Esta es una aplicacion web para realizar el control y seguimiento de las persona
   <img alt="Version" src="https://img.shields.io/badge/version-0.0-blue.svg?cacheSeconds=2592000" />
 </p>
 
+## Flujo
+
+<p>
+  <img alt="Flujo Diappbetes" src="https://jdhl27.github.io/Portafolio/images/flow-diappbetes.jpeg" />
+</p>
+
 ## Backend
 https://github.com/jdhl27/diappbetes-backend
 
