@@ -1,0 +1,10 @@
+
+REQUERIMIENTOS FUNCIONALES DE LA APLICACIÓN DIAPPBETES
+
+1. El sistema debe permitir loguearse como paciente y como médico 
+2. El sistema debe mostrar diferentes gráficas sobre los datos registrados por el paciente, con trazabilidad de horas, semanas o meses.  
+3. Se permitirá el registro de mediciones de glucosa indefinidamente 
+4. El sistema permitirá a los usuarios autorizados como pacientes el ingresar sus registros, visualizar gráficas de sus datos y realizar comentarios sobre estos.
+5. El sistema permitirá a los usuarios autorizados como médicos consultar los datos ingresados en tiempo real por sus pacientes, así como visualizar las gráficas de sus procesos y realizar comentario, diagnósticos y subir fórmulas o cualquier tipo de documento.
+6. El usuario registrado como médico puede visualizar los datos registrados de sus pacientes
+
