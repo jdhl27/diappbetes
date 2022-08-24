@@ -6,6 +6,9 @@ Esta es una aplicacion web para realizar el control y seguimiento de las persona
   <img alt="Version" src="https://img.shields.io/badge/version-0.0-blue.svg?cacheSeconds=2592000" />
 </p>
 
+## Backend
+https://github.com/jdhl27/diappbetes-backend
+
 ## Jira
 Se utilizó la platafroma [Jira](https://equipo2703.atlassian.net/jira/software/projects/DIAPP/boards/1) para registrar las tareas de los integrantes para el desarrolo de la app
 
