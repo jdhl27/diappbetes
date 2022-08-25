@@ -24,9 +24,9 @@ Se utilizó la libreria [Reactjs](https://es.reactjs.org/) con el lenguaje de pr
 ## Enlaces
 Versiones con las que se creó el proyecto
 
-- [Node (v14.15.4)](https://nodejs.org/es/download/releases/)
+- [Node (v16.14.0)](https://nodejs.org/es/download/releases/)
 
-- [npm (v6.14.10)](https://www.npmjs.com/) Nota: npm ya viene preinstalado con Node
+- [npm (v8.3.1)](https://www.npmjs.com/) Nota: npm ya viene preinstalado con Node
 ## Instalación
 
 ```sh
