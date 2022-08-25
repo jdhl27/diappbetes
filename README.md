@@ -16,7 +16,7 @@ Esta es una aplicacion web para realizar el control y seguimiento de las persona
 https://github.com/jdhl27/diappbetes-backend
 
 ## Jira
-Se utilizó la platafroma [Jira](https://equipo2703.atlassian.net/jira/software/projects/DIAPP/boards/1) para registrar las tareas de los integrantes para el desarrolo de la app
+Se utilizó la plataforma [Jira](https://equipo2703.atlassian.net/jira/software/projects/DIAPP/boards/1) para registrar las tareas de los integrantes para el desarrolo de la app
 
 ## React
 Se utilizó la libreria [Reactjs](https://es.reactjs.org/) con el lenguaje de programación JavaScript
