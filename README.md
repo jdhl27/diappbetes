@@ -16,7 +16,7 @@ Esta es una aplicacion web para realizar el control y seguimiento de las persona
 https://github.com/jdhl27/diappbetes-backend
 
 ## Diseño frontend
-Se utulizó la herramienta [Figma](https://www.figma.com/file/2wfnXM7huOfmB0FE8F7F53/Untitled?node-id=1%3A2) para realizar el diseño de la página web
+Se utilizó la herramienta [Figma](https://www.figma.com/file/2wfnXM7huOfmB0FE8F7F53/Untitled?node-id=1%3A2) para realizar el diseño de la página web
 
 ## Jira
 Se utilizó la plataforma [Jira](https://equipo2703.atlassian.net/jira/software/projects/DIAPP/boards/1) para registrar las tareas de los integrantes para el desarrolo de la app
