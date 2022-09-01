@@ -1,6 +1,8 @@
 <h1 align="center">Bienvenid@ a Diappbetes 👋</h1>
 
-Esta es una aplicacion web para realizar el control y seguimiento de las personas con diabetes
+Realizar el control de la glucosa conlleva a varios pasos: El paciente debe registrar diariamente el nivel de glucosa en la sangre en diferentes momentos del día (según lo indicado por el médico especialista). Para la obtención de la muestra de sangre se requiere un Bolígrafo Lanceta para pinchar el dedo y a través de un glucómetro se observa el nivel de la glucosa. Estos resultados se deben registrar para que el médico especialista lo evalué y formule un tratamiento preciso para el próximo mes.  
+
+Este proceso es riguroso y no hay herramienta unificada para que el paciente pueda llevar el control de forma más ordenada, por lo que la revisión y formulación por parte de los especialistas, puede tardar más de lo necesario, causando que el tratamiento no sea preciso para el paciente. 
 
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.0-blue.svg?cacheSeconds=2592000" />
