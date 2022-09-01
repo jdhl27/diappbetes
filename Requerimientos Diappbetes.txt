@@ -1,6 +1,5 @@
 
-REQUERIMIENTOS FUNCIONALES DE LA APLICACIÓN DIAPPBETES
-
+REQUISITOS FUNCIONALES 
 1. El sistema debe permitir loguearse como paciente y como médico 
 2. El sistema debe mostrar diferentes gráficas sobre los datos registrados por el paciente, con trazabilidad de horas, semanas o meses.  
 3. Se permitirá el registro de mediciones de glucosa indefinidamente 
@@ -8,3 +7,15 @@ REQUERIMIENTOS FUNCIONALES DE LA APLICACIÓN DIAPPBETES
 5. El sistema permitirá a los usuarios autorizados como médicos consultar los datos ingresados en tiempo real por sus pacientes, así como visualizar las gráficas de sus procesos y realizar comentario, diagnósticos y subir fórmulas o cualquier tipo de documento.
 6. El usuario registrado como médico puede visualizar los datos registrados de sus pacientes
 
+REQUISITOS NO FUNCIONALES
+1. El sistema debe ser capaz de procesar N transacciones por segundo. 
+2. El sistema debe ser capaz de operar o funcionar con hasta mil usuarios con sesiones en simultáneo
+3. El tiempo de aprendizaje del sistema por un usuario deberá ser menor a 4 horas
+4. El sistema debe contar con manuales de usuario estructurados adecuadamente
+5. El sistema debe contar con un módulo de ayuda en línea
+6. El sistema debe brindar mensajes de error que sean informativos y orientados al usuario
+7. el sistema debe tener un rendimiento moderadamente adecuado, de alrededor 2 a 3 segundos máximos de espera en línea por transacciones de primer nivel
+
+POR QUÉ TENER INCIO DE SESIÓN EN NUESTRA APP
+Es necesario tener Login en nuestra aplicación, primeramente por que vamos a manejar 2 tipos de perfiles en nuestro sistema que son, Médico y Paciente. Por lo tanto es necesario que se puedan registrar y loguear para acondicionar la app con las herramientas que cada uno puede utilizar. 
+Segundo por que bajo cada sesión se guarda información confidencial, tanto de los médicos como de cada paciente que lleva su control en la aplicación.
