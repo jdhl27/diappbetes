@@ -18,4 +18,4 @@ REQUISITOS NO FUNCIONALES
 
 POR QUÉ TENER INCIO DE SESIÓN EN NUESTRA APP
 Es necesario tener Login en nuestra aplicación, primeramente por que vamos a manejar 2 tipos de perfiles en nuestro sistema que son, Médico y Paciente. Por lo tanto es necesario que se puedan registrar y loguear para acondicionar la app con las herramientas que cada uno puede utilizar. 
-Segundo por que bajo cada sesión se guarda información confidencial, tanto de los médicos como de cada paciente que lleva su control en la aplicación.
+Segundo porque bajo cada sesión se guarda información confidencial, tanto de los médicos como de cada paciente que lleva su control en la aplicación.
