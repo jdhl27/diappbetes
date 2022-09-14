@@ -23,6 +23,9 @@ Se utilizó la herramienta [Figma](https://www.figma.com/file/2wfnXM7huOfmB0FE8F
 ## Jira
 Se utilizó la plataforma [Jira](https://equipo2703.atlassian.net/jira/software/projects/DIAPP/boards/1) para registrar las tareas de los integrantes para el desarrollo de la app
 
+## Uizard
+Se utilizó la plataforma [Uizard](https://app.uizard.io/p/065317a7) para el diseño de los mockups
+
 ## React
 Se utilizó la libreria [Reactjs](https://es.reactjs.org/) con el lenguaje de programación JavaScript
 
