@@ -1,0 +1,12 @@
+.link {
+    color: #3c82f6;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-family: "InterLightMedium";
+  }
+  
+  .link:hover {
+    color: #1c4ed8;
+  }
