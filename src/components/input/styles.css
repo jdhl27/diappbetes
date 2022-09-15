@@ -1,0 +1,27 @@
+.container-field {
+  margin-top: 0.9rem;
+}
+
+.label {
+  display: block;
+  font-family: "InterLightMedium"
+}
+
+.input {
+  padding: 16px;
+  width: 90%;
+  border-radius: 0.5rem;
+  background-color: #e5e7eb;
+  border-width: 1px;
+  border-color: #e5e7eb;
+  border-style: solid;
+  margin-bottom: 0.2rem;
+  margin-top: 0.6rem;
+  font-family: "InterLight"
+}
+
+input:focus {
+  outline: none;
+  background-color: #fff;
+  border-color: rgb(59 130 246);
+}
