@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.b7848452.css",
-    "main.js": "/static/js/main.46db23f8.js",
-    "static/js/787.6e9271d6.chunk.js": "/static/js/787.6e9271d6.chunk.js",
-    "static/media/Inter-Medium.ttf": "/static/media/Inter-Medium.6dcbc9bed1ec438907ee.ttf",
-    "static/media/Inter-Light.ttf": "/static/media/Inter-Light.eec8664621fec98efb37.ttf",
-    "index.html": "/index.html",
-    "main.b7848452.css.map": "/static/css/main.b7848452.css.map",
-    "main.46db23f8.js.map": "/static/js/main.46db23f8.js.map",
-    "787.6e9271d6.chunk.js.map": "/static/js/787.6e9271d6.chunk.js.map"
+    "main.css": "/diappbetes/static/css/main.170f5d43.css",
+    "main.js": "/diappbetes/static/js/main.2d23c5aa.js",
+    "static/js/787.6e9271d6.chunk.js": "/diappbetes/static/js/787.6e9271d6.chunk.js",
+    "static/media/Inter-Medium.ttf": "/diappbetes/static/media/Inter-Medium.6dcbc9bed1ec438907ee.ttf",
+    "static/media/Inter-Light.ttf": "/diappbetes/static/media/Inter-Light.eec8664621fec98efb37.ttf",
+    "index.html": "/diappbetes/index.html",
+    "main.170f5d43.css.map": "/diappbetes/static/css/main.170f5d43.css.map",
+    "main.2d23c5aa.js.map": "/diappbetes/static/js/main.2d23c5aa.js.map",
+    "787.6e9271d6.chunk.js.map": "/diappbetes/static/js/787.6e9271d6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b7848452.css",
-    "static/js/main.46db23f8.js"
+    "static/css/main.170f5d43.css",
+    "static/js/main.2d23c5aa.js"
   ]
 }
