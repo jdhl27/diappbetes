@@ -14,7 +14,7 @@ function Login() {
   return (
     <div className="container">
       <div className="container-logo-form">
-        <Logo styles={{ marginLeft: "42px", width: "150px" }} />
+        <Logo styles={{ paddingLeft: "42px"}} widthLogo={"150px"} />
         <div className="container-form">
           <div className="container-form-two">
             {/* <h1 className="title">Bienvenido a Diappbetes</h1> */}
@@ -56,7 +56,11 @@ function Login() {
       </div>
 
       <div className="container-image">
-        <Lottie animationData={healthcareAnimation} loop={true} />
+        <Lottie
+          animationData={healthcareAnimation}
+          loop={true}
+          style={{ height: "100%" }}
+        />
       </div>
     </div>
   );

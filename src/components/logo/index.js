@@ -1,12 +1,12 @@
 import React from "react";
 import "./styles.css";
 
-function Logo({styles = {}}) {
+function Logo({styles = {}, widthLogo = "200px", heightLogo = "79.89913722779494"}) {
   return (
     <div className="logo" style={styles}>
       <svg
-        width={styles.width ? styles.width : "200px"}
-        height={styles.height ? styles.height : "79.89913722779494"}
+        width={widthLogo}
+        height={heightLogo}
         viewBox="0 0 302.95504885993483 79.89913722779494"
         className="css-1j8o68f"
       >
