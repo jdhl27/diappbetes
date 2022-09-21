@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/diappbetes/static/css/main.a468e822.css",
+    "main.css": "/diappbetes/static/css/main.5f711f2e.css",
     "main.js": "/diappbetes/static/js/main.5db314e9.js",
     "static/js/787.6e9271d6.chunk.js": "/diappbetes/static/js/787.6e9271d6.chunk.js",
     "static/media/Inter-Medium.ttf": "/diappbetes/static/media/Inter-Medium.6dcbc9bed1ec438907ee.ttf",
     "static/media/Inter-Light.ttf": "/diappbetes/static/media/Inter-Light.eec8664621fec98efb37.ttf",
     "index.html": "/diappbetes/index.html",
-    "main.a468e822.css.map": "/diappbetes/static/css/main.a468e822.css.map",
+    "main.5f711f2e.css.map": "/diappbetes/static/css/main.5f711f2e.css.map",
     "main.5db314e9.js.map": "/diappbetes/static/js/main.5db314e9.js.map",
     "787.6e9271d6.chunk.js.map": "/diappbetes/static/js/787.6e9271d6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a468e822.css",
+    "static/css/main.5f711f2e.css",
     "static/js/main.5db314e9.js"
   ]
 }
