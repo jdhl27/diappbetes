@@ -58,4 +58,6 @@ npm start
 
 👤 **Laura Buriticá**
 
+👤 **Juan Carlos Correa**
+
 👤 **Juan David Hernández**
