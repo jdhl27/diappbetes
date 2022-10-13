@@ -14,7 +14,7 @@ function Login() {
   return (
     <div className="container">
       <div className="container-logo-form">
-        <Logo styles={{ paddingLeft: "42px"}} widthLogo={"150px"} />
+        <Logo styles={{ paddingLeft: "42px" }} widthLogo={"150px"} />
         <div className="container-form">
           <div className="container-form-two">
             {/* <h1 className="title">Bienvenido a Diappbetes</h1> */}
@@ -45,7 +45,7 @@ function Login() {
 
             <p className="text">
               Intenta creando una cuenta. {` `}
-              <Links text="Crear mi cuenta" />
+              <Links text="Crear mi cuenta" isLink={true} href={'/register'} />
             </p>
 
             <p className="text-light">
