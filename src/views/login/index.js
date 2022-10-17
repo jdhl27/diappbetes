@@ -16,10 +16,15 @@ function Login() {
     <div className="container">
       <div className="container-logo-form">
         <Logo styles={{ paddingLeft: "42px" }} widthLogo={"150px"} />
-        <div className={heightScreen <= 700 ? "container-form paddingTop0" : "container-form"}>
+        <div
+          className={
+            heightScreen <= 700
+              ? "container-form-login paddingTop0"
+              : "container-form-login"
+          }
+        >
           <div className="container-form-two">
-            {/* <h1 className="title">Bienvenido a Diappbetes</h1> */}
-            <h1 className="subtitle">Ingresa</h1>
+            <h1 className="subtitle">Ingresa </h1>
 
             <div className="form">
               <Input
@@ -46,7 +51,7 @@ function Login() {
 
             <p className="text">
               Intenta creando una cuenta. {` `}
-              <Links text="Crear mi cuenta" isLink={true} href={'/register'} />
+              <Links text="Crear mi cuenta" isLink={true} href={"/register"} />
             </p>
 
             <p className="text-light">

@@ -2,7 +2,6 @@ import React from "react";
 import Lottie from "lottie-react";
 import ButtonComponent from "../../components/button";
 import Input from "../../components/input";
-import Links from "../../components/links";
 import Logo from "../../components/logo";
 import healthcareAnimation from "../../assets/animations/healthcare-loader.json";
 import "./styles.css";
