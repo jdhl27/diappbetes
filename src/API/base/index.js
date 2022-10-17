@@ -13,22 +13,18 @@ class Register {
   }
 
   onRequest(config) {
-    console.log('onRequest');
     return config;
   }
 
   onSync(promise) {
-    console.log('onSync');
     return promise;
   }
   
   onResponse(data) {
-    console.log('onResponse');
     return data;
   }
 
   onResponseError(err = {}) {
-    console.log("on response Error", err);
     return err.response;
   }
 }
