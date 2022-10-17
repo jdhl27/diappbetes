@@ -4,7 +4,7 @@ import "./styles.css";
 function Input({
   type = "text",
   placeholder = "",
-  autofocus = true,
+  autofocus = false,
   autocomplete = "true",
   required = true,
   label = "",

@@ -26,13 +26,13 @@ function Login() {
                 type="email"
                 placeholder="ejemplo@yopmail.com"
                 label="Correo Electrónico"
+                autofocus={true}
               />
 
               <Input
                 type="password"
                 placeholder="**************"
                 label="Contraseña"
-                autofocus={false}
               />
 
               <div className="container-forgot-password">
