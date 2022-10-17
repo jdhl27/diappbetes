@@ -19,6 +19,10 @@
   padding-top: 100px;
 }
 
+.paddingTop0 {
+  padding-top: 0 !important;
+}
+
 .container-form-two {
   align-self: center;
 }
