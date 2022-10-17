@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Lottie from "lottie-react";
 import ButtonComponent from "../../components/button";
 import Input from "../../components/input";
@@ -7,11 +7,35 @@ import Logo from "../../components/logo";
 import healthcareAnimation from "../../assets/animations/healthcare-loader.json";
 import "./styles.css";
 
+import User from "../../API/endpoints/user";
+import { useNavigate } from "react-router-dom";
+
 const date = new Date();
 const yearCurrent = date.getFullYear();
 const heightScreen = window.innerHeight;
+const localStorage = window.localStorage;
 
 function Login() {
+  const navigate = useNavigate();
+  const [data, setData] = useState({});
+
+  const handleLogin = () => {
+    if (data.email && data.password) {
+      User.PostUserLogin(data)
+        .then((response) => {
+          if (response.status >= 200 && response.status < 300) {
+            localStorage.setItem("token", response.data.token);
+            navigate("home");
+          } else {
+            alert('Revisa los datos')
+          }
+        })
+        .catch((err) => console.log("error: ", err));
+    } else {
+      alert("Por favor llene los campos");
+    }
+  };
+
   return (
     <div className="container">
       <div className="container-logo-form">
@@ -32,19 +56,36 @@ function Login() {
                 placeholder="ejemplo@yopmail.com"
                 label="Correo Electrónico"
                 autofocus={true}
+                onchange={(value) => {
+                  setData({
+                    ...data,
+                    email: value,
+                  });
+                }}
               />
 
               <Input
                 type="password"
                 placeholder="**************"
                 label="Contraseña"
+                onchange={(value) => {
+                  setData({
+                    ...data,
+                    password: value,
+                  });
+                }}
               />
 
               <div className="container-forgot-password">
                 <Links text="Olvidé mi clave" />
               </div>
 
-              <ButtonComponent text="Ingresar" />
+              <ButtonComponent
+                text="Ingresar"
+                onClick={() => {
+                  handleLogin();
+                }}
+              />
             </div>
 
             <hr className="line" />
