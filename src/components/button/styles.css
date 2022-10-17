@@ -9,7 +9,9 @@
   text-align: center;
   text-decoration: none;
   border-radius: 0.5rem;
-  font-family: "InterLightMedium"
+  font-family: "InterLightMedium";
+  cursor: pointer;
+  user-select: none;
 }
 
 .button:hover {
