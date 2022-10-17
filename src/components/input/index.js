@@ -8,19 +8,19 @@ function Input({
   autocomplete = "true",
   required = true,
   label = "",
+  onchange = function () {}
 }) {
   return (
     <div className="container-field">
       <label className="label">{label}</label>
       <input
         type={type}
-        name=""
-        id=""
         placeholder={placeholder}
         className="input"
         autoFocus={autofocus}
         autoComplete={autocomplete}
         required={required}
+        onChange={(e) => onchange(e.target.value)}
       />
     </div>
   );
