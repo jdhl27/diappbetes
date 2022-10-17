@@ -9,13 +9,14 @@ import "./styles.css";
 
 const date = new Date();
 const yearCurrent = date.getFullYear();
+const heightScreen = window.innerHeight;
 
 function Login() {
   return (
     <div className="container">
       <div className="container-logo-form">
         <Logo styles={{ paddingLeft: "42px" }} widthLogo={"150px"} />
-        <div className="container-form">
+        <div className={heightScreen <= 700 ? "container-form paddingTop0" : "container-form"}>
           <div className="container-form-two">
             {/* <h1 className="title">Bienvenido a Diappbetes</h1> */}
             <h1 className="subtitle">Ingresa</h1>
