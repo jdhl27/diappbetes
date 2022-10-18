@@ -8,6 +8,7 @@ import healthcareAnimation from "../../assets/animations/healthcare-loader.json"
 import "./styles.css";
 import User from "../../API/endpoints/user";
 import Loading from "../../components/loading";
+import Links from "../../components/links";
 
 const date = new Date();
 const yearCurrent = date.getFullYear();
@@ -151,6 +152,11 @@ function Register() {
               </div>
             </div>
             <hr className="line" />
+
+            <p className="text">
+              Ya tengo una cuenta. {` `}
+              <Links text="Iniciar sesión" isLink={true} href={"/login"} />
+            </p>
 
             <p className="text-light">
               &copy; {yearCurrent} Diappbetes - Todos los derechos reservados.
