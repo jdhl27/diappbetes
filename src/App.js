@@ -16,14 +16,19 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="*" element={<Navigate to="/" replace />} />
-        <Route path="/" element={token ? <Home /> : <Login />} />
-        <Route path="/home" element={<Home />} />
+        <Route
+          path="*"
+          element={<>NO EXISTE LA RUTA A LA QUE DESEAS ACCEDER</>}
+        />
+        <Route path="/" element={<Home />} />
         <Route
           path="/login"
           element={token ? <Navigate to="/" replace /> : <Login />}
         />
-        <Route path="/register" element={token ? <Navigate to="/" replace /> : <Register />} />
+        <Route
+          path="/register"
+          element={token ? <Navigate to="/" replace /> : <Register />}
+        />
       </Routes>
     </div>
   );

@@ -8,14 +8,16 @@ import healthcareAnimation from "../../assets/animations/healthcare-loader.json"
 import "./styles.css";
 
 import User from "../../API/endpoints/user";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const date = new Date();
 const yearCurrent = date.getFullYear();
 const heightScreen = window.innerHeight;
-const localStorage = window.localStorage;
 
 function Login() {
+  const localStorage = window.localStorage;
+  const token = localStorage.getItem("token");
+
   const navigate = useNavigate();
   const [data, setData] = useState({});
 
@@ -25,9 +27,9 @@ function Login() {
         .then((response) => {
           if (response.status >= 200 && response.status < 300) {
             localStorage.setItem("token", response.data.token);
-            navigate("home");
+            navigate("/");
           } else {
-            alert('Revisa los datos')
+            alert("Revisa los datos");
           }
         })
         .catch((err) => console.log("error: ", err));
@@ -35,6 +37,10 @@ function Login() {
       alert("Por favor llene los campos");
     }
   };
+
+  if (token) {
+    return <Navigate to="/" replace={true} />;
+  }
 
   return (
     <div className="container">
