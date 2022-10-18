@@ -2,14 +2,7 @@ import Login from "./views/login";
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Register from "./views/register";
-
-export const Home = () => {
-  const token = window.localStorage.token;
-  if (token) {
-    return <h1>Estas en el home</h1>;
-  }
-  return <Navigate to="/login" replace={true} />;
-};
+import Dashboard from "./views/dashboard";
 
 function App() {
   const token = window.localStorage.token;
@@ -17,7 +10,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="*" element={<Navigate to="/" replace />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Dashboard />} />
         <Route
           path="/login"
           element={token ? <Navigate to="/" replace /> : <Login />}
