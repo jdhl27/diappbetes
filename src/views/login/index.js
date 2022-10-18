@@ -22,6 +22,7 @@ function Login() {
   const navigate = useNavigate();
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
+  const [vacio, setVacio] = useState(false)
 
   const handleLogin = () => {
     if (data.email && data.password) {
@@ -41,7 +42,8 @@ function Login() {
           console.log("error: ", err);
         });
     } else {
-      alert("Por favor llene los campos");
+      //alert("Por favor llene los campos");
+      setVacio(true)
     }
   };
 
@@ -62,6 +64,7 @@ function Login() {
           }
         >
           <div className="container-form-two">
+            {vacio && <div className="from-msm">Por favor llene los campos</div>}
             <h1 className="subtitle">Ingresa </h1>
 
             <div className="form">
@@ -71,6 +74,7 @@ function Login() {
                 label="Correo Electrónico"
                 autofocus={true}
                 onchange={(value) => {
+                  setVacio(false)
                   setData({
                     ...data,
                     email: value,
@@ -83,6 +87,7 @@ function Login() {
                 placeholder="**************"
                 label="Contraseña"
                 onchange={(value) => {
+                  setVacio(false)
                   setData({
                     ...data,
                     password: value,
