@@ -7,6 +7,7 @@ import Links from "../../components/links";
 import Logo from "../../components/logo";
 import Loading from "../../components/loading";
 import healthcareAnimation from "../../assets/animations/healthcare-loader.json";
+import {useValidateEmail} from '../../hooks/useValidation'
 import "./styles.css";
 
 import User from "../../API/endpoints/user";
@@ -22,10 +23,13 @@ function Login() {
   const navigate = useNavigate();
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
-  const [vacio, setVacio] = useState(false)
+  const [validar, setValidar] = useState({empty: false, noLogin: false})
+  const [email, validateEmail] = useValidateEmail()
 
   const handleLogin = () => {
-    if (data.email && data.password) {
+    validateEmail(data.email)
+    console.log(email)
+    if (email.isEmail && data.password) {
       setLoading(true);
       User.PostUserLogin(data)
         .then((response) => {
@@ -33,7 +37,8 @@ function Login() {
             localStorage.setItem("token", response.data.token);
             navigate("/");
           } else {
-            alert("Revisa los datos");
+            //alert("Revisa los datos");
+            setValidar((e)=>{return {...e,noLogin:true}})
           }
           setLoading(false);
         })
@@ -43,7 +48,7 @@ function Login() {
         });
     } else {
       //alert("Por favor llene los campos");
-      setVacio(true)
+      setValidar((e)=> {return{...e, ...email}})
     }
   };
 
@@ -64,7 +69,8 @@ function Login() {
           }
         >
           <div className="container-form-two">
-            {vacio && <div className="from-msm">Por favor llene los campos</div>}
+            {!email.isEmail && <div className="from-msm">{email.message}</div>}
+            {validar.noLogin && <div className="from-msm">Por favor validar correo o Contraseña sean correctos</div>}
             <h1 className="subtitle">Ingresa </h1>
 
             <div className="form">
@@ -74,20 +80,21 @@ function Login() {
                 label="Correo Electrónico"
                 autofocus={true}
                 onchange={(value) => {
-                  setVacio(false)
+                  validateEmail(value)
                   setData({
                     ...data,
                     email: value,
                   });
                 }}
               />
-
+              {!email.isEmail && <div className="from-msm4">{email.message}</div>}
+              
               <Input
                 type="password"
                 placeholder="**************"
                 label="Contraseña"
                 onchange={(value) => {
-                  setVacio(false)
+                  setValidar((e)=> {return{...e, empty: '', noLogin:false}})
                   setData({
                     ...data,
                     password: value,
