@@ -30,7 +30,6 @@ function Register() {
 
     if (data.email && data.password) {
       setLoading(true);
-      console.log(dataSend);
       User.PostUserRegister(dataSend)
         .then((response) => {
           if (response.status >= 200 && response.status < 300) {
