@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import Lottie from "lottie-react";
+import { Navigate, useNavigate } from "react-router-dom";
 import ButtonComponent from "../../components/button";
 import Input from "../../components/input";
 import Links from "../../components/links";
 import Logo from "../../components/logo";
+import Loading from "../../components/loading";
 import healthcareAnimation from "../../assets/animations/healthcare-loader.json";
 import "./styles.css";
 
 import User from "../../API/endpoints/user";
-import { Navigate, useNavigate } from "react-router-dom";
 
 const date = new Date();
 const yearCurrent = date.getFullYear();
@@ -20,9 +21,11 @@ function Login() {
 
   const navigate = useNavigate();
   const [data, setData] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = () => {
     if (data.email && data.password) {
+      setLoading(true);
       User.PostUserLogin(data)
         .then((response) => {
           if (response.status >= 200 && response.status < 300) {
@@ -31,8 +34,12 @@ function Login() {
           } else {
             alert("Revisa los datos");
           }
+          setLoading(false);
         })
-        .catch((err) => console.log("error: ", err));
+        .catch((err) => {
+          setLoading(false);
+          console.log("error: ", err);
+        });
     } else {
       alert("Por favor llene los campos");
     }
@@ -44,6 +51,7 @@ function Login() {
 
   return (
     <div className="container">
+      {loading && <Loading />}
       <div className="container-logo-form">
         <Logo styles={{ paddingLeft: "42px" }} widthLogo={"150px"} />
         <div
