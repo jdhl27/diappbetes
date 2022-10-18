@@ -7,7 +7,7 @@ import Links from "../../components/links";
 import Logo from "../../components/logo";
 import Loading from "../../components/loading";
 import healthcareAnimation from "../../assets/animations/healthcare-loader.json";
-import {useValidateEmail} from '../../hooks/useValidation'
+import { useValidateEmail, useValidateinput} from '../../hooks/useValidation'
 import "./styles.css";
 
 import User from "../../API/endpoints/user";
@@ -25,11 +25,13 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const [validar, setValidar] = useState({empty: false, noLogin: false})
   const [email, validateEmail] = useValidateEmail()
+  const [inputPass, validateInput] = useValidateinput()
 
   const handleLogin = () => {
     validateEmail(data.email)
+    validateInput(data.password)
     console.log(email)
-    if (email.isEmail && data.password) {
+    if (email.isEmail && inputPass.isValid) {
       setLoading(true);
       User.PostUserLogin(data)
         .then((response) => {
@@ -94,13 +96,14 @@ function Login() {
                 placeholder="**************"
                 label="Contraseña"
                 onchange={(value) => {
-                  setValidar((e)=> {return{...e, empty: '', noLogin:false}})
+                  validateInput(value)
                   setData({
                     ...data,
                     password: value,
                   });
                 }}
               />
+               {!inputPass.isValid && <div className="from-msm4">{inputPass.message}</div>}
 
               <div className="container-forgot-password">
                 <Links text="Olvidé mi clave" />
