@@ -16,10 +16,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route
-          path="*"
-          element={<>NO EXISTE LA RUTA A LA QUE DESEAS ACCEDER</>}
-        />
+        <Route path="*" element={<Navigate to="/" replace />} />
         <Route path="/" element={<Home />} />
         <Route
           path="/login"
