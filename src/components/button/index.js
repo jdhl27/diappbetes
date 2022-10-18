@@ -1,10 +1,10 @@
 import React from "react";
 import "./styles.css";
 
-function ButtonComponent({ text = "", href = "#", onClick = null }) {
+function ButtonComponent({ text = "", href = "#", onClick = null, style = {} }) {
   if (onClick) {
     return (
-      <div className="button" onClick={() => onClick()}>
+      <div style={style} className="button" onClick={() => onClick()}>
         {text}
       </div>
     );
