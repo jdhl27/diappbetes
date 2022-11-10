@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Lottie from "lottie-react";
 import { Navigate, useNavigate } from "react-router-dom";
 import ButtonComponent from "../../components/button";
@@ -12,6 +12,7 @@ import Links from "../../components/links";
 import { FormControlLabel, FormGroup, Switch } from "@mui/material";
 import styled from "@emotion/styled";
 import { notify } from "../../components/notify";
+import UserContext from "../../contexts/user/userContext";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -64,10 +65,12 @@ const date = new Date();
 const yearCurrent = date.getFullYear();
 
 function Register() {
+  // Context for user selected
+  const { updateUser } = useContext(UserContext);
   const localStorage = window.localStorage;
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
-  const [data, setData] = useState({ esMedico: false });
+  const [data, setData] = useState({ isMedical: false });
   const [loading, setLoading] = useState(false);
 
   const handleRegister = () => {
@@ -94,13 +97,15 @@ function Register() {
       delete dataSend["firstName"];
       delete dataSend["lastName"];
       delete dataSend["passwordConfirm"];
+      console.log(dataSend);
       User.PostUserRegister(dataSend)
         .then((response) => {
           if (response.status >= 200 && response.status < 300) {
             localStorage.setItem("token", response.data.token);
+            updateUser(dataSend);
             navigate("/");
           } else {
-            alert("Revisa los datos");
+            notify("Ocurrió un error", "error");
           }
           setLoading(false);
         })
@@ -225,16 +230,16 @@ function Register() {
                     <MaterialUISwitch
                       sx={{ m: 1 }}
                       defaultChecked
-                      checked={data.esMedico}
+                      checked={data.isMedical}
                       onChange={(event) => {
                         setData({
                           ...data,
-                          esMedico: event.target.checked,
+                          isMedical: event.target.checked,
                         });
                       }}
                     />
                   }
-                  label={data.esMedico ? "Soy Médico" : "Soy Paciente"}
+                  label={data.isMedical ? "Soy Médico" : "Soy Paciente"}
                 />
               </FormGroup>
               {/* 
