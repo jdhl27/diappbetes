@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import User from "../../API/endpoints/user";
+import { DashboardLayout } from "../../components/dashboard/dashboard-layout";
 import Header from "../../components/header";
 import Loading from "../../components/loading";
 
-function Dashboard() {
+const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [dataUser, setUser] = useState({});
 
@@ -39,18 +40,18 @@ function Dashboard() {
   const token = window.localStorage.token;
   if (token) {
     return (
-      <div>
+      <DashboardLayout>
         {loading && <Loading />}
-        <Header
+        {/* <Header
           userData={dataUser}
           onLogout={() => {
             handleLogout();
           }}
-        />
-      </div>
+        /> */}
+      </DashboardLayout>
     );
   }
   return <Navigate to="/login" replace={true} />;
-}
+};
 
 export default Dashboard;
