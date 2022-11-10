@@ -28,12 +28,6 @@
   align-self: center;
 }
 
-.title {
-}
-
-.subtitle {
-}
-
 .line {
   border-color: #ffffffa1;
   margin-top: 1.5rem;
@@ -44,9 +38,6 @@
 .container-image {
   width: 40%;
   background-color: #2563eb;
-}
-
-.text {
 }
 
 .text-light {
@@ -62,7 +53,7 @@
   margin-bottom: 1.3rem;
 }
 
-.from-msm{
+.from-msm {
   background-color: #e9b3b3;
   height: 20px;
   border-radius: 5px;

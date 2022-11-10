@@ -29,7 +29,6 @@ function Login() {
   const navigate = useNavigate();
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
-  const [validar, setValidar] = useState({ empty: false, noLogin: false });
   const [email, validateEmail] = useValidateEmail();
   const [inputPass, validateInput] = useValidateinput();
 
@@ -49,10 +48,6 @@ function Login() {
             updateUser(response.data.user);
             navigate("/");
           } else {
-            //alert("Revisa los datos");
-            setValidar((e) => {
-              return { ...e, noLogin: true };
-            });
             notify("Datos incorrectos", "error");
           }
           setLoading(false);
@@ -62,11 +57,7 @@ function Login() {
           console.log("error: ", err);
         });
     } else {
-      //alert("Por favor llene los campos");
       notify("Por favor llene los campos", "warn");
-      setValidar((e) => {
-        return { ...e, ...email };
-      });
     }
   };
 
