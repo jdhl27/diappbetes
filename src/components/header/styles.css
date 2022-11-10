@@ -27,9 +27,14 @@
 .container-avatar-name {
   display: flex;
   align-items: center;
-  margin-right: 25px;
-  padding-right: 10px;
+  /* margin-right: 25px;
+  padding-right: 10px; */
   cursor: pointer;
+  margin: 11px;
+}
+
+.container-avatar-name > span {
+  color: #000 !important;
 }
 
 .container-avatar-name:hover {
@@ -46,4 +51,8 @@
 
 .container-avatar-info > div > span {
   display: block;
+}
+
+.line {
+  margin-bottom: 1rem;
 }
