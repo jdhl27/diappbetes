@@ -26,7 +26,6 @@ import User from "../../API/endpoints/user";
 import "../header/styles.css";
 
 const DashboardNavbarRoot = styled(AppBar)(({ theme }) => {
-  console.log(theme);
   return {
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[3],
@@ -52,7 +51,7 @@ export const DashboardNavbar = (props) => {
           });
       }
     }
-  }, [user]);
+  }, []);
 
   const navigate = useNavigate();
 
@@ -73,6 +72,7 @@ export const DashboardNavbar = (props) => {
 
   const onLogout = async () => {
     await localStorage.removeItem("token");
+    updateUser({});
     setTimeout(() => {
       navigate("/");
     }, 1000);
@@ -182,9 +182,13 @@ export const DashboardNavbar = (props) => {
               </Box>
             </ClickAwayListener>
           ) : (
-            <div style={{flexDirection: 'row', display: 'flex'}}>
+            <div style={{ flexDirection: "row", display: "flex" }}>
               <Skeleton variant="circular" width={40} height={40} />
-              <Skeleton variant="text" width={90} sx={{ fontSize: "1.5rem", marginLeft: 1 }} />
+              <Skeleton
+                variant="text"
+                width={90}
+                sx={{ fontSize: "1.5rem", marginLeft: 1 }}
+              />
             </div>
           )}
           {/* <Avatar
