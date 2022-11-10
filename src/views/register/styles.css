@@ -1,6 +1,7 @@
 .container-register {
     flex-direction: row;
     display: flex;
+    background-color: #fff;
   }
   
   .container-logo-form {
@@ -34,6 +35,7 @@
   
   .text-light {
     margin-top: 3rem;
+    margin-bottom: 3rem;
     font-size: 0.875rem;
     line-height: 1.25rem;
     color: #6b7280;
@@ -47,6 +49,12 @@
 
   .button-form{
     margin-top: 1rem;
+  }
+
+  .from-msm-pass{
+    background-color: #e9b3b3;
+    padding: 10;
+    width: 50%;
   }
   
   @media only screen and (max-width: 700px) {
