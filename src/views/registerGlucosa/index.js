@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { DashboardLayout } from "../../components/dashboard/dashboard-layout";
 import Loading from "../../components/loading";
 
-const Dashboard = () => {
+const RegisterGlucosa = () => {
   const [loading, setLoading] = useState(true);
 
   const token = window.localStorage.token;
@@ -11,11 +11,11 @@ const Dashboard = () => {
     return (
       <DashboardLayout>
         {/* {loading && <Loading />} */}
-        <h1>Estoy en la vista dashboard</h1>
+        <h1>Estoy en la vista RegisterGlucosa</h1>
       </DashboardLayout>
     );
   }
   return <Navigate to="/login" replace={true} />;
 };
 
-export default Dashboard;
+export default RegisterGlucosa;
