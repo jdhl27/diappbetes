@@ -12,6 +12,9 @@ import RegisterGlucosa from "./views/registerGlucosa";
 import AccountUser from "./views/account";
 import Settings from "./views/settings";
 import RegisterObservacion from "./views/registerObservacion";
+import { registerChartJs } from "./utils/register-chart-js";
+
+registerChartJs()
 
 
 function App() {
