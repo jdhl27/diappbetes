@@ -14,7 +14,6 @@ import { notify } from "../../components/notify";
 import "./styles.css";
 
 import User from "../../API/endpoints/user";
-import BasicModal from "../../components/modal";
 
 const date = new Date();
 const yearCurrent = date.getFullYear();
@@ -32,7 +31,6 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const [email, validateEmail] = useValidateEmail();
   const [inputPass, validateInput] = useValidateinput();
- 
 
   const handleLogin = () => {
     validateEmail(data.email);
@@ -130,10 +128,6 @@ function Login() {
                   handleLogin();
                 }}
               />
-                                    
-
-              
-
             </div>
 
             <hr className="line" />

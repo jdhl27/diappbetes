@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import {
   Box,
   Button,
@@ -58,7 +58,10 @@ export const AccountProfileDetails = (props) => {
   return (
     <form autoComplete="off" noValidate {...props}>
       <Card>
-        <CardHeader subheader="Puedes editar la información" title="Mi perfil" />
+        <CardHeader
+          subheader="Puedes editar la información"
+          title="Mi perfil"
+        />
         <Divider />
         <CardContent>
           <Grid container spacing={3}>
