@@ -13,7 +13,8 @@ export const customers = [
     createdAt: 1555016400000,
     email: 'ekaterina.tankova@devias.io',
     name: 'Ekaterina Tankova',
-    phone: '304-428-3097'
+    phone: '304-428-3097',
+    status: 'ddd'
   },
   {
     id: uuid(),
@@ -27,7 +28,8 @@ export const customers = [
     createdAt: 1555016400000,
     email: 'cao.yu@devias.io',
     name: 'Cao Yu',
-    phone: '712-351-5711'
+    phone: '712-351-5711',
+    status: 'ddd'
   },
   {
     id: uuid(),
@@ -41,7 +43,8 @@ export const customers = [
     createdAt: 1555016400000,
     email: 'alexa.richardson@devias.io',
     name: 'Alexa Richardson',
-    phone: '770-635-2682'
+    phone: '770-635-2682',
+    status: 'ddd'
   },
   {
     id: uuid(),
@@ -55,7 +58,8 @@ export const customers = [
     createdAt: 1554930000000,
     email: 'anje.keizer@devias.io',
     name: 'Anje Keizer',
-    phone: '908-691-3242'
+    phone: '908-691-3242',
+    status: 'ddd'
   },
   {
     id: uuid(),
@@ -69,7 +73,8 @@ export const customers = [
     createdAt: 1554757200000,
     email: 'clarke.gillebert@devias.io',
     name: 'Clarke Gillebert',
-    phone: '972-333-4106'
+    phone: '972-333-4106',
+    status: 'ddd'
   },
   {
     id: uuid(),

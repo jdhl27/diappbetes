@@ -8,8 +8,8 @@ import {
   LineElement,
   PointElement,
   Title,
-  Tooltip
-} from 'chart.js';
+  Tooltip,
+} from "chart.js";
 
 export const registerChartJs = () => {
   Chart.register(
