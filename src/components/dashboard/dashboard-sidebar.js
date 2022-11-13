@@ -38,7 +38,7 @@ const items = [
     title: "Mi Cuenta",
   },
   {
-    href: "/settings",
+    href: "/configuraciones",
     icon: <CogIcon fontSize="small" />,
     title: "Configuraciones",
   },
