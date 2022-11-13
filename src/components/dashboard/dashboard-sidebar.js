@@ -5,7 +5,7 @@ import { Cog as CogIcon } from "../../icons/cog";
 import { Lock as LockIcon } from "../../icons/lock";
 import { ShoppingBag as ShoppingBagIcon } from "../../icons/shopping-bag";
 import { User as UserIcon } from "../../icons/user";
-import { UserAdd as UserAddIcon } from "../../icons/user-add";
+import { UserAdd as UserAddIcon } from "../../icons/cog";
 import { Users as UsersIcon } from "../../icons/users";
 import { XCircle as XCircleIcon } from "../../icons/x-circle";
 import { NavItem } from "./nav-item";
@@ -19,12 +19,12 @@ const items = [
   },
   {
     href: "/glucosa",
-    icon: <UserIcon fontSize="small" />,
+    icon: <XCircleIcon fontSize="small" />,
     title: "Registros Glucosa",
   },
   {
     href: "/observaciones",
-    icon: <ShoppingBagIcon fontSize="small" />,
+    icon: <XCircleIcon fontSize="small" />,
     title: "Observaciones",
   },
   {
@@ -33,9 +33,14 @@ const items = [
     title: "Pacientes",
   },
   {
+    href: "/cuenta",
+    icon: <UserIcon fontSize="small" />,
+    title: "Mi Cuenta",
+  },
+  {
     href: "/settings",
     icon: <CogIcon fontSize="small" />,
-    title: "Settings",
+    title: "Configuraciones",
   },
 ];
 
