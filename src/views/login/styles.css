@@ -7,6 +7,10 @@
   background-color: #fff;
 }
 
+.container-modal {
+  padding: 20px;
+}
+
 .container-logo-form {
   width: 60%;
   display: flex;
@@ -62,6 +66,18 @@
   position: absolute;
   bottom: 20px;
   left: 20px;
+}
+select.select-nivel {
+  padding: 16px 0 16px 16px;
+    width: 100%;
+    border-radius: 0.5rem;
+    background-color: #e5e7eb;
+    border-width: 1px;
+    border-color: #e5e7eb;
+    border-style: solid;
+    margin-bottom: 0.2rem;
+    margin-top: 0.6rem;
+    font-family: "InterLight";;
 }
 
 @media only screen and (max-width: 700px) {
