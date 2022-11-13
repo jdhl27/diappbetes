@@ -11,6 +11,8 @@ import { ToastContainer } from "react-toastify";
 import RegisterGlucosa from "./views/registerGlucosa";
 import AccountUser from "./views/account";
 import Settings from "./views/settings";
+import RegisterObservacion from "./views/registerObservacion";
+
 
 function App() {
   const token = window.localStorage.token;
@@ -42,6 +44,10 @@ function App() {
             <Route
               path="/configuraciones"
               element={ <Settings />}
+            />
+            <Route
+              path="/observaciones"
+              element={ <RegisterObservacion />}
             />
           </Routes>
         </div>
