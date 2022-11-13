@@ -9,6 +9,8 @@ import { CssBaseline } from "@mui/material";
 import UserState from "../src/contexts/user/userState";
 import { ToastContainer } from "react-toastify";
 import RegisterGlucosa from "./views/registerGlucosa";
+import AccountUser from "./views/account";
+import Settings from "./views/settings";
 
 function App() {
   const token = window.localStorage.token;
@@ -21,7 +23,6 @@ function App() {
           <Routes>
             <Route path="*" element={<Navigate to="/" replace />} />
             <Route path="/" element={<Dashboard />} />
-            <Route path="/glucosa" element={<RegisterGlucosa />} />
             <Route
               path="/login"
               element={token ? <Navigate to="/" replace /> : <Login />}
@@ -29,6 +30,18 @@ function App() {
             <Route
               path="/register"
               element={token ? <Navigate to="/" replace /> : <Register />}
+            />
+            <Route
+              path="/glucosa"
+              element={ <RegisterGlucosa />}
+            />
+            <Route
+              path="/cuenta"
+              element={ <AccountUser />}
+            />
+            <Route
+              path="/configuraciones"
+              element={ <Settings />}
             />
           </Routes>
         </div>
