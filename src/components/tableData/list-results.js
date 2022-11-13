@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import PerfectScrollbar from 'react-perfect-scrollbar';
-import PropTypes from 'prop-types';
-import { format } from 'date-fns';
+import { useState } from "react";
+import PerfectScrollbar from "react-perfect-scrollbar";
+import PropTypes from "prop-types";
+import { format } from "date-fns";
 import {
   Avatar,
   Box,
@@ -13,9 +13,10 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  Typography
-} from '@mui/material';
-import { getInitials } from '../../utils/get-initials';
+  Typography,
+} from "@mui/material";
+import { getInitials } from "../../utils/get-initials";
+import { SeverityPill } from "../severity-pill";
 
 export const ListResults = ({ data, ...rest }) => {
   const [selectedCustomerIds, setSelectedCustomerIds] = useState([]);
@@ -39,11 +40,18 @@ export const ListResults = ({ data, ...rest }) => {
     let newSelectedCustomerIds = [];
 
     if (selectedIndex === -1) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds, id);
+      newSelectedCustomerIds = newSelectedCustomerIds.concat(
+        selectedCustomerIds,
+        id
+      );
     } else if (selectedIndex === 0) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds.slice(1));
+      newSelectedCustomerIds = newSelectedCustomerIds.concat(
+        selectedCustomerIds.slice(1)
+      );
     } else if (selectedIndex === selectedCustomerIds.length - 1) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds.slice(0, -1));
+      newSelectedCustomerIds = newSelectedCustomerIds.concat(
+        selectedCustomerIds.slice(0, -1)
+      );
     } else if (selectedIndex > 0) {
       newSelectedCustomerIds = newSelectedCustomerIds.concat(
         selectedCustomerIds.slice(0, selectedIndex),
@@ -74,27 +82,17 @@ export const ListResults = ({ data, ...rest }) => {
                     checked={selectedCustomerIds.length === data.length}
                     color="primary"
                     indeterminate={
-                      selectedCustomerIds.length > 0
-                      && selectedCustomerIds.length < data.length
+                      selectedCustomerIds.length > 0 &&
+                      selectedCustomerIds.length < data.length
                     }
                     onChange={handleSelectAll}
                   />
                 </TableCell>
-                <TableCell>
-                  Name
-                </TableCell>
-                <TableCell>
-                  Email
-                </TableCell>
-                <TableCell>
-                  Location
-                </TableCell>
-                <TableCell>
-                  Phone
-                </TableCell>
-                <TableCell>
-                  Registration date
-                </TableCell>
+                <TableCell>Name</TableCell>
+                <TableCell>Email</TableCell>
+                <TableCell>Location</TableCell>
+                <TableCell>Phone</TableCell>
+                <TableCell>Registration date</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -114,35 +112,33 @@ export const ListResults = ({ data, ...rest }) => {
                   <TableCell>
                     <Box
                       sx={{
-                        alignItems: 'center',
-                        display: 'flex'
+                        alignItems: "center",
+                        display: "flex",
                       }}
                     >
-                      <Avatar
-                        src={item.avatarUrl}
-                        sx={{ mr: 2 }}
-                      >
+                      <Avatar src={item.avatarUrl} sx={{ mr: 2 }}>
                         {getInitials(item.name)}
                       </Avatar>
-                      <Typography
-                        color="textPrimary"
-                        variant="body1"
-                      >
+                      <Typography color="textPrimary" variant="body1">
                         {item.name}
                       </Typography>
                     </Box>
                   </TableCell>
-                  <TableCell>
-                    {item.email}
-                  </TableCell>
+                  <TableCell>{item.email}</TableCell>
                   <TableCell>
                     {`${item.address.city}, ${item.address.state}, ${item.address.country}`}
                   </TableCell>
+                  <TableCell>{item.phone}</TableCell>
                   <TableCell>
-                    {item.phone}
-                  </TableCell>
-                  <TableCell>
-                    {format(item.createdAt, 'dd/MM/yyyy')}
+                    <SeverityPill
+                      color={
+                        (item.status === "delivered" && "success") ||
+                        (item.status === "refunded" && "error") ||
+                        "warning"
+                      }
+                    >
+                      {item.status}
+                    </SeverityPill>
                   </TableCell>
                 </TableRow>
               ))}
@@ -164,5 +160,5 @@ export const ListResults = ({ data, ...rest }) => {
 };
 
 ListResults.propTypes = {
-  data: PropTypes.array.isRequired
+  data: PropTypes.array.isRequired,
 };
