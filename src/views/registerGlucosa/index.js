@@ -15,7 +15,7 @@ import UserContext from "../../contexts/user/userContext";
 import { AuthContext } from "../../contexts/auth";
 
 const RegisterGlucosa = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -24,37 +24,24 @@ const RegisterGlucosa = () => {
   const [dataAll, setDataAll] = useState([]);
 
   // Context for user selected
-  const { user, updateUser } = useContext(UserContext);
-  const { authToken } = useContext(AuthContext);
+  const { user } = useContext(UserContext);
+  const userData = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    console.log("entro");
-    if (Object.keys(user).length === 0) {
-      if (authToken) {
-        User.GetUser()
-          .then((response) => {
-            if (response.status >= 200 && response.status < 300) {
-              updateUser(response?.data?.user);
-            }
-          })
-          .catch((err) => {
-            console.log("error: ", err);
-          });
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    Glucose.GetAllGlucoses()
+    Glucose.GetAllGlucoses({ id_paciente: user._id || userData?._id })
       .then((response) => {
-        if (response.status >= 200 && response.status < 300) {
+        if (response.status >= 200 && response.status < 400) {
           setDataAll(response?.data);
+        } else {
+          Notify("Ocurrió un error", "error");
         }
+        setLoading(false);
       })
       .catch((err) => {
         console.log("error: ", err);
+        setLoading(false);
       });
-  }, []);
+  }, [user]);
 
   const handleAdd = () => {
     const dataSend = {
@@ -67,7 +54,7 @@ const RegisterGlucosa = () => {
       setLoading(true);
       Glucose.PostGlucose(dataSend)
         .then((response) => {
-          if (response.status >= 200 && response.status < 300) {
+          if (response.status >= 200 && response.status < 400) {
           } else {
             Notify("Hubo un error", "error");
           }

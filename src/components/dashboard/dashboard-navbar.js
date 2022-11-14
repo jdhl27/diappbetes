@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import {
@@ -16,9 +16,7 @@ import { Bell as BellIcon } from "../../icons/bell";
 import { Users as UsersIcon } from "../../icons/users";
 import UserContext from "../../contexts/user/userContext";
 import ButtonComponent from "../button";
-import { useNavigate } from "react-router-dom";
 import { styles } from "../header";
-import User from "../../API/endpoints/user";
 
 import "../header/styles.css";
 import { AuthContext } from "../../contexts/auth";
@@ -33,27 +31,7 @@ const DashboardNavbarRoot = styled(AppBar)(({ theme }) => {
 export const DashboardNavbar = (props) => {
   // Context for user selected
   const { user, updateUser } = useContext(UserContext);
-  const { authToken, updateToken } = useContext(AuthContext);
-
-  useEffect(() => {
-    if (Object.keys(user).length === 0) {
-      if (authToken) {
-        User.GetUser()
-          .then((response) => {
-            if (response.status >= 200 && response.status < 300) {
-              updateUser(response?.data?.user);
-            }
-          })
-          .catch((err) => {
-            console.log("error: ", err);
-          });
-      }
-    }
-  }, [updateUser, user]);
-
-  const navigate = useNavigate();
-
-  console.log("user: ", user);
+  const { updateToken } = useContext(AuthContext);
 
   const { onSidebarOpen, ...other } = props;
   const [openAccountPopover, setOpenAccountPopover] = useState(false);
@@ -70,11 +48,9 @@ export const DashboardNavbar = (props) => {
 
   const onLogout = async () => {
     await localStorage.removeItem("token");
+    await localStorage.removeItem("user");
     updateUser({});
     updateToken(null);
-    // setTimeout(() => {
-    navigate("/");
-    // }, 1000);
   };
 
   return (

@@ -102,10 +102,11 @@ function Register() {
       console.log(dataSend);
       User.PostUserRegister(dataSend)
         .then((response) => {
-          if (response.status >= 200 && response.status < 300) {
+          if (response.status >= 200 && response.status < 400) {
             localStorage.setItem("token", response.data.token);
+            localStorage.setItem("user", JSON.stringify(response.data.user));
             updateToken(response.data.token);
-            updateUser(dataSend);
+            updateUser(response.data.user);
             navigate("/");
           } else {
             Notify("Ocurrió un error", "error");

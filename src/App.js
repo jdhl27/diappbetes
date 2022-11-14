@@ -16,6 +16,7 @@ import { registerChartJs } from "./utils/register-chart-js";
 import Page404 from "./views/404";
 import AuthState from "./contexts/auth";
 import { ProtectedRoutes } from "./components/protectedRoutes";
+import { ValidateUser } from "./utils/validate-user";
 
 registerChartJs();
 
@@ -23,27 +24,29 @@ function App() {
   return (
     <AuthState>
       <UserState>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <div className="App">
-            <ToastContainer />
-            <Routes>
-              <Route path="*" element={<Page404 />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route element={<ProtectedRoutes />}>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/glucosa" element={<RegisterGlucosa />} />
-                <Route path="/cuenta" element={<AccountUser />} />
-                <Route path="/configuraciones" element={<Settings />} />
-                <Route
-                  path="/observaciones"
-                  element={<RegisterObservacion />}
-                />
-              </Route>
-            </Routes>
-          </div>
-        </ThemeProvider>
+        <ValidateUser>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <div className="App">
+              <ToastContainer />
+              <Routes>
+                <Route path="*" element={<Page404 />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route element={<ProtectedRoutes />}>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/glucosa" element={<RegisterGlucosa />} />
+                  <Route path="/cuenta" element={<AccountUser />} />
+                  <Route path="/configuraciones" element={<Settings />} />
+                  <Route
+                    path="/observaciones"
+                    element={<RegisterObservacion />}
+                  />
+                </Route>
+              </Routes>
+            </div>
+          </ThemeProvider>
+        </ValidateUser>
       </UserState>
     </AuthState>
   );

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import {
   Box,
   Button,
@@ -10,8 +10,6 @@ import {
   TextField,
 } from "@mui/material";
 import UserContext from "../../contexts/user/userContext";
-import User from "../../API/endpoints/user";
-import { AuthContext } from "../../contexts/auth";
 
 const states = [
   {
@@ -31,23 +29,6 @@ const states = [
 export const AccountProfileDetails = (props) => {
   // Context for user selected
   const { user, updateUser } = useContext(UserContext);
-  const { authToken } = useContext(AuthContext);
-
-  useEffect(() => {
-    if (Object.keys(user).length === 0) {
-      if (authToken) {
-        User.GetUser()
-          .then((response) => {
-            if (response.status >= 200 && response.status < 300) {
-              updateUser(response?.data?.user);
-            }
-          })
-          .catch((err) => {
-            console.log("error: ", err);
-          });
-      }
-    }
-  }, []);
 
   const handleChange = (event) => {
     updateUser({

@@ -44,8 +44,9 @@ function Login() {
       setLoading(true);
       User.PostUserLogin(data)
         .then((response) => {
-          if (response.status >= 200 && response.status < 300) {
+          if (response.status >= 200 && response.status < 400) {
             localStorage.setItem("token", response.data.token);
+            localStorage.setItem("user", JSON.stringify(response.data.user));
             updateToken(response.data.token);
             updateUser(response.data.user);
             navigate("/");
