@@ -13,6 +13,7 @@ import AccountUser from "./views/account";
 import Settings from "./views/settings";
 import RegisterObservacion from "./views/registerObservacion";
 import { registerChartJs } from "./utils/register-chart-js";
+import Page404 from "./views/404";
 
 registerChartJs()
 
@@ -26,7 +27,6 @@ function App() {
         <div className="App">
           <ToastContainer />
           <Routes>
-            <Route path="*" element={<Navigate to="/" replace />} />
             <Route path="/" element={<Dashboard />} />
             <Route
               path="/login"
@@ -56,6 +56,7 @@ function App() {
         </div>
       </ThemeProvider>
     </UserState>
+              <Route path="*" element={<Page404 />} />
   );
 }
 
