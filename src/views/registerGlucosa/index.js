@@ -1,6 +1,5 @@
 import { Box, Container } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
-// import { Navigate } from "react-router-dom";
 import { DashboardLayout } from "../../components/dashboard/dashboard-layout";
 import Loading from "../../components/loading";
 import BasicModal from "../../components/modal";
@@ -8,12 +7,12 @@ import Input from "../../components/input";
 import ButtonComponent from "../../components/button";
 import { ListResults } from "../../components/tableData/list-results";
 import { ListToolbar } from "../../components/tableData/list-toolbar";
-import { customers } from "../../__mocks__/customers";
 import TextAreaComponent from "../../components/textArea";
-import { notify } from "../../components/notify";
+import { Notify } from "../../components/notify";
 import Glucose from "../../API/endpoints/glucose";
 import User from "../../API/endpoints/user";
 import UserContext from "../../contexts/user/userContext";
+import { AuthContext } from "../../contexts/auth";
 
 const RegisterGlucosa = () => {
   const [loading, setLoading] = useState(false);
@@ -26,12 +25,12 @@ const RegisterGlucosa = () => {
 
   // Context for user selected
   const { user, updateUser } = useContext(UserContext);
+  const { authToken } = useContext(AuthContext);
 
   useEffect(() => {
     console.log("entro");
     if (Object.keys(user).length === 0) {
-      const token = window.localStorage.token;
-      if (token) {
+      if (authToken) {
         User.GetUser()
           .then((response) => {
             if (response.status >= 200 && response.status < 300) {
@@ -48,10 +47,8 @@ const RegisterGlucosa = () => {
   useEffect(() => {
     Glucose.GetAllGlucoses()
       .then((response) => {
-        console.log("VEAAA: ", response);
         if (response.status >= 200 && response.status < 300) {
-          // updateUser(response?.data?.user);
-          setDataAll(response?.data)
+          setDataAll(response?.data);
         }
       })
       .catch((err) => {
@@ -72,21 +69,19 @@ const RegisterGlucosa = () => {
         .then((response) => {
           if (response.status >= 200 && response.status < 300) {
           } else {
-            notify("Hubo un error", "error");
+            Notify("Hubo un error", "error");
           }
           setLoading(false);
         })
         .catch((err) => {
           setLoading(false);
-          notify("Hubo un error", "error");
+          Notify("Hubo un error", "error");
         });
     } else {
-      notify("Por favor llene los campos", "warn");
+      Notify("Por favor llene los campos", "warn");
     }
   };
 
-  // const token = window.localStorage.token;
-  // if (token) {
   return (
     <DashboardLayout>
       {loading && <Loading />}
@@ -140,7 +135,7 @@ const RegisterGlucosa = () => {
               dataHeader={["Mensaje", "Nivel registrado", "Fecha", "Prioridad"]}
               data={dataAll}
               onClickUser={(id) => {
-                console.log("click user: ", id);
+                // console.log("click user: ", id);
               }}
             />
           </Box>
@@ -148,8 +143,6 @@ const RegisterGlucosa = () => {
       </Box>
     </DashboardLayout>
   );
-  // }
-  // return <Navigate to="/login" replace={true} />;
 };
 
 export default RegisterGlucosa;

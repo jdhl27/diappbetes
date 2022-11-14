@@ -21,6 +21,7 @@ import { styles } from "../header";
 import User from "../../API/endpoints/user";
 
 import "../header/styles.css";
+import { AuthContext } from "../../contexts/auth";
 
 const DashboardNavbarRoot = styled(AppBar)(({ theme }) => {
   return {
@@ -32,11 +33,11 @@ const DashboardNavbarRoot = styled(AppBar)(({ theme }) => {
 export const DashboardNavbar = (props) => {
   // Context for user selected
   const { user, updateUser } = useContext(UserContext);
+  const { authToken, updateToken } = useContext(AuthContext);
 
   useEffect(() => {
     if (Object.keys(user).length === 0) {
-      const token = window.localStorage.token;
-      if (token) {
+      if (authToken) {
         User.GetUser()
           .then((response) => {
             if (response.status >= 200 && response.status < 300) {
@@ -70,9 +71,10 @@ export const DashboardNavbar = (props) => {
   const onLogout = async () => {
     await localStorage.removeItem("token");
     updateUser({});
-    setTimeout(() => {
-      navigate("/");
-    }, 1000);
+    updateToken(null);
+    // setTimeout(() => {
+    navigate("/");
+    // }, 1000);
   };
 
   return (

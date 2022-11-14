@@ -10,10 +10,11 @@ import Loading from "../../components/loading";
 import healthcareAnimation from "../../assets/animations/healthcare-loader.json";
 import { useValidateEmail, useValidateinput } from "../../hooks/useValidation";
 import UserContext from "../../contexts/user/userContext";
-import { notify } from "../../components/notify";
+import { Notify } from "../../components/notify";
 import "./styles.css";
 
 import User from "../../API/endpoints/user";
+import { AuthContext } from "../../contexts/auth";
 
 const date = new Date();
 const yearCurrent = date.getFullYear();
@@ -22,9 +23,9 @@ const heightScreen = window.innerHeight;
 function Login() {
   // Context for user selected
   const { updateUser } = useContext(UserContext);
+  const { authToken, updateToken } = useContext(AuthContext);
 
   const localStorage = window.localStorage;
-  const token = localStorage.getItem("token");
 
   const navigate = useNavigate();
   const [data, setData] = useState({});
@@ -36,7 +37,7 @@ function Login() {
     validateEmail(data.email);
     validateInput(data.password);
     if (!email.isEmail) {
-      notify("Verifique el correo", "warn");
+      Notify("Verifique el correo", "warn");
       return;
     }
     if (email.isEmail && inputPass.isValid) {
@@ -45,10 +46,11 @@ function Login() {
         .then((response) => {
           if (response.status >= 200 && response.status < 300) {
             localStorage.setItem("token", response.data.token);
+            updateToken(response.data.token);
             updateUser(response.data.user);
             navigate("/");
           } else {
-            notify("Datos incorrectos", "error");
+            Notify("Datos incorrectos", "error");
           }
           setLoading(false);
         })
@@ -57,11 +59,11 @@ function Login() {
           console.log("error: ", err);
         });
     } else {
-      notify("Por favor llene los campos", "warn");
+      Notify("Por favor llene los campos", "warn");
     }
   };
 
-  if (token) {
+  if (authToken) {
     return <Navigate to="/" replace={true} />;
   }
 

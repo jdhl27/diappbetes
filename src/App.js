@@ -14,49 +14,38 @@ import Settings from "./views/settings";
 import RegisterObservacion from "./views/registerObservacion";
 import { registerChartJs } from "./utils/register-chart-js";
 import Page404 from "./views/404";
+import AuthState from "./contexts/auth";
+import { ProtectedRoutes } from "./components/protectedRoutes";
 
-registerChartJs()
-
+registerChartJs();
 
 function App() {
-  const token = window.localStorage.token;
   return (
-    <UserState>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <div className="App">
-          <ToastContainer />
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route
-              path="/login"
-              element={token ? <Navigate to="/" replace /> : <Login />}
-            />
-            <Route
-              path="/register"
-              element={token ? <Navigate to="/" replace /> : <Register />}
-            />
-            <Route
-              path="/glucosa"
-              element={ <RegisterGlucosa />}
-            />
-            <Route
-              path="/cuenta"
-              element={ <AccountUser />}
-            />
-            <Route
-              path="/configuraciones"
-              element={ <Settings />}
-            />
-            <Route
-              path="/observaciones"
-              element={ <RegisterObservacion />}
-            />
-          </Routes>
-        </div>
-      </ThemeProvider>
-    </UserState>
+    <AuthState>
+      <UserState>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <div className="App">
+            <ToastContainer />
+            <Routes>
               <Route path="*" element={<Page404 />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route element={<ProtectedRoutes />}>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/glucosa" element={<RegisterGlucosa />} />
+                <Route path="/cuenta" element={<AccountUser />} />
+                <Route path="/configuraciones" element={<Settings />} />
+                <Route
+                  path="/observaciones"
+                  element={<RegisterObservacion />}
+                />
+              </Route>
+            </Routes>
+          </div>
+        </ThemeProvider>
+      </UserState>
+    </AuthState>
   );
 }
 

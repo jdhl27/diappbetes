@@ -11,8 +11,9 @@ import Loading from "../../components/loading";
 import Links from "../../components/links";
 import { FormControlLabel, FormGroup, Switch } from "@mui/material";
 import styled from "@emotion/styled";
-import { notify } from "../../components/notify";
+import { Notify } from "../../components/notify";
 import UserContext from "../../contexts/user/userContext";
+import { AuthContext } from "../../contexts/auth";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -67,8 +68,10 @@ const yearCurrent = date.getFullYear();
 function Register() {
   // Context for user selected
   const { updateUser } = useContext(UserContext);
+  const { authToken, updateToken } = useContext(AuthContext);
+
   const localStorage = window.localStorage;
-  const token = localStorage.getItem("token");
+
   const navigate = useNavigate();
   const [data, setData] = useState({ isMedical: false });
   const [loading, setLoading] = useState(false);
@@ -90,22 +93,22 @@ function Register() {
       data.password &&
       data.passwordConfirm;
     const validationPass = data.password === data.passwordConfirm;
-    const validationPass2 = regexPass.test(data.password);
+    // const validationPass2 = regexPass.test(data.password);
+    const validationPass2 = true;
 
     if (validation && validationPass && validationPass2) {
       setLoading(true);
-      delete dataSend["firstName"];
-      delete dataSend["lastName"];
       delete dataSend["passwordConfirm"];
       console.log(dataSend);
       User.PostUserRegister(dataSend)
         .then((response) => {
           if (response.status >= 200 && response.status < 300) {
             localStorage.setItem("token", response.data.token);
+            updateToken(response.data.token);
             updateUser(dataSend);
             navigate("/");
           } else {
-            notify("Ocurrió un error", "error");
+            Notify("Ocurrió un error", "error");
           }
           setLoading(false);
         })
@@ -115,15 +118,15 @@ function Register() {
         });
     } else {
       if (!validation) {
-        notify("Por favor llene los campos");
+        Notify("Por favor llene los campos");
         return;
       }
       if (!validationPass) {
-        notify("Las claves no coinciden");
+        Notify("Las claves no coinciden");
         return;
       }
       if (!validationPass2) {
-        notify(`
+        Notify(`
         La clave debe contener lo siguiente: 
         - Minimo 8 caracteres
         - Maximo 15
@@ -139,7 +142,7 @@ function Register() {
     }
   };
 
-  if (token) {
+  if (authToken) {
     return <Navigate to="/" replace={true} />;
   }
 
