@@ -7,41 +7,64 @@ import { Users as UsersIcon } from "../../icons/users";
 import { XCircle as XCircleIcon } from "../../icons/x-circle";
 import { NavItem } from "./nav-item";
 import Logo from "../logo";
+import { useContext } from "react";
+import UserContext from "../../contexts/user/userContext";
 
-const items = [
-  {
-    href: "/",
-    icon: <ChartBarIcon fontSize="small" />,
-    title: "Reportes",
-  },
-  {
-    href: "/glucosa",
-    icon: <XCircleIcon fontSize="small" />,
-    title: "Registros Glucosa",
-  },
-  {
-    href: "/observaciones",
-    icon: <XCircleIcon fontSize="small" />,
-    title: "Observaciones",
-  },
-  {
-    href: "/pacientes",
-    icon: <UsersIcon fontSize="small" />,
-    title: "Pacientes",
-  },
-  {
-    href: "/cuenta",
-    icon: <UserIcon fontSize="small" />,
-    title: "Mi Cuenta",
-  },
-  {
-    href: "/configuraciones",
-    icon: <CogIcon fontSize="small" />,
-    title: "Configuraciones",
-  },
-];
 
 export const DashboardSidebar = (props) => {
+  // Context for user selected
+  const { user, updateUser } = useContext(UserContext);
+
+  let items = []
+
+  if (user?.isMedical) {
+    items = [
+      {
+        href: "/pacientes",
+        icon: <UsersIcon fontSize="small" />,
+        title: "Pacientes",
+      },
+      {
+        href: "/cuenta",
+        icon: <UserIcon fontSize="small" />,
+        title: "Mi Cuenta",
+      },
+      {
+        href: "/configuraciones",
+        icon: <CogIcon fontSize="small" />,
+        title: "Configuraciones",
+      },
+    ];
+  } else {
+    items = [
+      {
+        href: "/",
+        icon: <ChartBarIcon fontSize="small" />,
+        title: "Reportes",
+      },
+      {
+        href: "/glucosa",
+        icon: <XCircleIcon fontSize="small" />,
+        title: "Registros Glucosa",
+      },
+      {
+        href: "/observaciones",
+        icon: <XCircleIcon fontSize="small" />,
+        title: "Observaciones",
+      },
+      {
+        href: "/cuenta",
+        icon: <UserIcon fontSize="small" />,
+        title: "Mi Cuenta",
+      },
+      {
+        href: "/configuraciones",
+        icon: <CogIcon fontSize="small" />,
+        title: "Configuraciones",
+      },
+    ];
+  }
+
   const { open, onClose } = props;
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"), {
     defaultMatches: true,
