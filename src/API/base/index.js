@@ -19,7 +19,7 @@ class Register {
   onSync(promise) {
     return promise;
   }
-  
+
   onResponse(data) {
     return data;
   }
@@ -42,7 +42,7 @@ class Request {
       if (token != null) {
         config.headers["Authorization"] = "Bearer " + token;
       }
-      console.log("config", config);
+      // console.log("config", config);
       return config;
     });
 
