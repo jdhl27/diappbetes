@@ -19,8 +19,28 @@
   margin-top: 0.6rem;
   font-family: "InterLight";
 }
+.textArea {
+  padding: 16px 0 16px 16px;
+  width: 100%;
+  max-height: 10%;
+  border-radius: 0.5rem;
+  background-color: #e5e7eb;
+  border-width: 1px;
+  border-color: #e5e7eb;
+  border-style: solid;
+  margin-bottom: 0.2rem;
+  margin-top: 0.6rem;
+  font-family: "InterLight";
+  resize: none;
+}
 
 input:focus {
+  outline: none;
+  background-color: #fff;
+  border-color: rgb(59 130 246);
+}
+
+textarea:focus {
   outline: none;
   background-color: #fff;
   border-color: rgb(59 130 246);
