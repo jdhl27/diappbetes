@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 
-export const notify = (
+export const Notify = (
     msg = "",
     type = "warn",
     position = toast.POSITION.TOP_LEFT
