@@ -3,7 +3,6 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import { DashboardLayout } from "../../components/dashboard/dashboard-layout";
 import { Budget } from "../../components/graph/budget";
-import { LatestOrders } from "../../components/graph/latest-orders";
 import { Sales } from "../../components/graph/sales";
 import { TasksProgress } from "../../components/graph/tasks-progress";
 import { TotalCustomers } from "../../components/graph/total-customers";
