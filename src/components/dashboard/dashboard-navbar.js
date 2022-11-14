@@ -1,9 +1,8 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import {
   AppBar,
-  Avatar,
   Badge,
   Box,
   ClickAwayListener,
@@ -15,7 +14,6 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import { Bell as BellIcon } from "../../icons/bell";
-import { UserCircle as UserCircleIcon } from "../../icons/user-circle";
 import { Users as UsersIcon } from "../../icons/users";
 import UserContext from "../../contexts/user/userContext";
 import ButtonComponent from "../button";
@@ -110,10 +108,14 @@ export const DashboardNavbar = (props) => {
           >
             <MenuIcon fontSize="small" />
           </IconButton>
-          <Tooltip title="Buscar">
-            <IconButton sx={{ ml: 1 }}>
-              <SearchIcon fontSize="small" />
-            </IconButton>
+          <Tooltip title="Rol">
+            <h5
+              className={
+                user?.isMedical ? "logo-rol-medico" : "logo-rol-paciente"
+              }
+            >
+              {user?.isMedical ? "Médico" : "Paciente"}
+            </h5>
           </Tooltip>
           <Box sx={{ flexGrow: 1 }} />
           <Tooltip title="Contactos">
@@ -132,7 +134,7 @@ export const DashboardNavbar = (props) => {
             <ClickAwayListener onClickAway={handleClickAway}>
               <Box>
                 <div className="container-avatar-name" onClick={handleClick}>
-                  <img src={user?.avatar} alt="..." className="avatar" />
+                  <img src={user?.avatar} alt="..." className={user?.isMedical ? "avatar" : "avatar-paciente"} />
                   <span>Hola, {name}</span>
                   <svg
                     width="20"
