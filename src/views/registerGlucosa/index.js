@@ -10,9 +10,7 @@ import { ListToolbar } from "../../components/tableData/list-toolbar";
 import TextAreaComponent from "../../components/textArea";
 import { Notify } from "../../components/notify";
 import Glucose from "../../API/endpoints/glucose";
-import User from "../../API/endpoints/user";
 import UserContext from "../../contexts/user/userContext";
-import { AuthContext } from "../../contexts/auth";
 
 const RegisterGlucosa = () => {
   const [loading, setLoading] = useState(true);
@@ -28,6 +26,11 @@ const RegisterGlucosa = () => {
   const userData = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
+    getGlucosa();
+  }, [user]);
+
+  const getGlucosa = () => {
+    setLoading(true);
     Glucose.GetAllGlucoses({ id_paciente: user._id || userData?._id })
       .then((response) => {
         if (response.status >= 200 && response.status < 400) {
@@ -41,12 +44,11 @@ const RegisterGlucosa = () => {
         console.log("error: ", err);
         setLoading(false);
       });
-  }, [user]);
+  };
 
   const handleAdd = () => {
     const dataSend = {
       ...data,
-      signupDate: new Date(),
       id_paciente: user._id,
     };
 
@@ -55,6 +57,8 @@ const RegisterGlucosa = () => {
       Glucose.PostGlucose(dataSend)
         .then((response) => {
           if (response.status >= 200 && response.status < 400) {
+            setOpen(false);
+            getGlucosa();
           } else {
             Notify("Hubo un error", "error");
           }
