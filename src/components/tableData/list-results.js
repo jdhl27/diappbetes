@@ -59,8 +59,8 @@ export const ListResults = ({
                 <TableRow
                   hover
                   key={item.id}
-                  selected={selectedCustomerIds.indexOf(item.id) !== -1}
-                  onClick={(event) => handleSelectOne(event, item.id)}
+                  selected={selectedCustomerIds === item._id}
+                  onClick={(event) => handleSelectOne(event, item._id)}
                   style={{ cursor: "pointer" }}
                 >
                   {/* <TableCell padding="checkbox">
