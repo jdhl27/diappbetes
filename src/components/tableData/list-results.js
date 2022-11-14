@@ -6,7 +6,6 @@ import {
   Avatar,
   Box,
   Card,
-  Checkbox,
   Table,
   TableBody,
   TableCell,
@@ -88,7 +87,10 @@ export const ListResults = ({
                     </Box>
                   </TableCell>
                   <TableCell>{item.nivel}</TableCell>
-                  <TableCell>{format(new Date(item.signupDate), 'dd/MM/yyyy')}/ {format(new Date(item.signupDate), "HH:mm")}</TableCell>
+                  <TableCell>
+                    {format(new Date(item.signupDate), "dd/MM/yyyy")}/{" "}
+                    {format(new Date(item.signupDate), "HH:mm")}
+                  </TableCell>
                   <TableCell>
                     <SeverityPill
                       color={

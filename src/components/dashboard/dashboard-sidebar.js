@@ -4,7 +4,6 @@ import { ChartBar as ChartBarIcon } from "../../icons/chart-bar";
 import { Cog as CogIcon } from "../../icons/cog";
 import { User as UserIcon } from "../../icons/user";
 import { Users as UsersIcon } from "../../icons/users";
-import { XCircle as XCircleIcon } from "../../icons/x-circle";
 import { Observations as ObservationsIcon } from "../../icons/observation";
 import { Pen as PencilIcon } from "../../icons/pen";
 import { NavItem } from "./nav-item";
@@ -12,12 +11,11 @@ import Logo from "../logo";
 import { useContext } from "react";
 import UserContext from "../../contexts/user/userContext";
 
-
 export const DashboardSidebar = (props) => {
   // Context for user selected
-  const { user, updateUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
-  let items = []
+  let items = [];
 
   if (user?.isMedical) {
     items = [

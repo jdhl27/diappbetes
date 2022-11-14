@@ -12,7 +12,6 @@ import {
   Tooltip,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
 import { Bell as BellIcon } from "../../icons/bell";
 import { Users as UsersIcon } from "../../icons/users";
 import UserContext from "../../contexts/user/userContext";
@@ -49,7 +48,7 @@ export const DashboardNavbar = (props) => {
           });
       }
     }
-  }, []);
+  }, [updateUser, user]);
 
   const navigate = useNavigate();
 
@@ -134,7 +133,11 @@ export const DashboardNavbar = (props) => {
             <ClickAwayListener onClickAway={handleClickAway}>
               <Box>
                 <div className="container-avatar-name" onClick={handleClick}>
-                  <img src={user?.avatar} alt="..." className={user?.isMedical ? "avatar" : "avatar-paciente"} />
+                  <img
+                    src={user?.avatar}
+                    alt="..."
+                    className={user?.isMedical ? "avatar" : "avatar-paciente"}
+                  />
                   <span>Hola, {name}</span>
                   <svg
                     width="20"
