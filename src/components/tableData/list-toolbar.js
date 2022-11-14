@@ -13,7 +13,7 @@ import { Upload as UploadIcon } from "../../icons/upload";
 import { Download as DownloadIcon } from "../../icons/download";
 
 export const ListToolbar = (props) => (
-  <Box {...props}>
+  <Box>
     <Box
       sx={{
         alignItems: "center",
@@ -24,7 +24,7 @@ export const ListToolbar = (props) => (
       }}
     >
       <Typography sx={{ m: 1 }} variant="h4">
-        Registra los niveles de glucosa diarios
+        {props?.title}
       </Typography>
       <Box sx={{ m: 1 }}>
         <Button startIcon={<UploadIcon fontSize="small" />} sx={{ mr: 1 }}>
@@ -33,12 +33,16 @@ export const ListToolbar = (props) => (
         <Button startIcon={<DownloadIcon fontSize="small" />} sx={{ mr: 1 }}>
           Exportar
         </Button>
-        <Button color="primary" variant="contained">
-          Agregar registro
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={props.onClickAction}
+        >
+          {props.titleButton}
         </Button>
       </Box>
     </Box>
-    <Box sx={{ mt: 3 }}>
+    {/* <Box sx={{ mt: 3 }}>
       <Card>
         <CardContent>
           <Box sx={{ maxWidth: 500 }}>
@@ -53,12 +57,12 @@ export const ListToolbar = (props) => (
                   </InputAdornment>
                 ),
               }}
-              placeholder="Search customer"
+              placeholder="Buscar..."
               variant="outlined"
             />
           </Box>
         </CardContent>
       </Card>
-    </Box>
+    </Box> */}
   </Box>
 );

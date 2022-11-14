@@ -18,48 +18,19 @@ import {
 import { getInitials } from "../../utils/get-initials";
 import { SeverityPill } from "../severity-pill";
 
-export const ListResults = ({ data, ...rest }) => {
+export const ListResults = ({
+  data = [],
+  onClickUser,
+  dataHeader = [],
+  ...rest
+}) => {
   const [selectedCustomerIds, setSelectedCustomerIds] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
 
-  const handleSelectAll = (event) => {
-    let newSelectedCustomerIds;
-
-    if (event.target.checked) {
-      newSelectedCustomerIds = data.map((item) => item.id);
-    } else {
-      newSelectedCustomerIds = [];
-    }
-
-    setSelectedCustomerIds(newSelectedCustomerIds);
-  };
-
   const handleSelectOne = (event, id) => {
-    const selectedIndex = selectedCustomerIds.indexOf(id);
-    let newSelectedCustomerIds = [];
-
-    if (selectedIndex === -1) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(
-        selectedCustomerIds,
-        id
-      );
-    } else if (selectedIndex === 0) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(
-        selectedCustomerIds.slice(1)
-      );
-    } else if (selectedIndex === selectedCustomerIds.length - 1) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(
-        selectedCustomerIds.slice(0, -1)
-      );
-    } else if (selectedIndex > 0) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(
-        selectedCustomerIds.slice(0, selectedIndex),
-        selectedCustomerIds.slice(selectedIndex + 1)
-      );
-    }
-
-    setSelectedCustomerIds(newSelectedCustomerIds);
+    setSelectedCustomerIds(id);
+    onClickUser(id);
   };
 
   const handleLimitChange = (event) => {
@@ -77,38 +48,28 @@ export const ListResults = ({ data, ...rest }) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell padding="checkbox">
-                  <Checkbox
-                    checked={selectedCustomerIds.length === data.length}
-                    color="primary"
-                    indeterminate={
-                      selectedCustomerIds.length > 0 &&
-                      selectedCustomerIds.length < data.length
-                    }
-                    onChange={handleSelectAll}
-                  />
-                </TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell>Location</TableCell>
-                <TableCell>Phone</TableCell>
-                <TableCell>Registration date</TableCell>
+                {/* <TableCell padding="checkbox"></TableCell> */}
+                {dataHeader.map((header) => (
+                  <TableCell>{header}</TableCell>
+                ))}
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.slice(0, limit).map((item) => (
+              {data?.slice(0, limit)?.map((item) => (
                 <TableRow
                   hover
                   key={item.id}
                   selected={selectedCustomerIds.indexOf(item.id) !== -1}
+                  onClick={(event) => handleSelectOne(event, item.id)}
+                  style={{ cursor: "pointer" }}
                 >
-                  <TableCell padding="checkbox">
+                  {/* <TableCell padding="checkbox">
                     <Checkbox
                       checked={selectedCustomerIds.indexOf(item.id) !== -1}
                       onChange={(event) => handleSelectOne(event, item.id)}
                       value="true"
                     />
-                  </TableCell>
+                  </TableCell> */}
                   <TableCell>
                     <Box
                       sx={{
@@ -116,28 +77,27 @@ export const ListResults = ({ data, ...rest }) => {
                         display: "flex",
                       }}
                     >
-                      <Avatar src={item.avatarUrl} sx={{ mr: 2 }}>
-                        {getInitials(item.name)}
-                      </Avatar>
+                      {item?.avatar && (
+                        <Avatar src={item.avatar} sx={{ mr: 2 }}>
+                          {getInitials(item.message)}
+                        </Avatar>
+                      )}
                       <Typography color="textPrimary" variant="body1">
-                        {item.name}
+                        {item.message}
                       </Typography>
                     </Box>
                   </TableCell>
-                  <TableCell>{item.email}</TableCell>
-                  <TableCell>
-                    {`${item.address.city}, ${item.address.state}, ${item.address.country}`}
-                  </TableCell>
-                  <TableCell>{item.phone}</TableCell>
+                  <TableCell>{item.nivel}</TableCell>
+                  <TableCell>{format(new Date(item.signupDate), 'dd/MM/yyyy')}/ {format(new Date(item.signupDate), "HH:mm")}</TableCell>
                   <TableCell>
                     <SeverityPill
                       color={
-                        (item.status === "delivered" && "success") ||
-                        (item.status === "refunded" && "error") ||
-                        "warning"
+                        (item.priority === "normal" && "success") ||
+                        (item.priority === "baja" && "warning") ||
+                        "error"
                       }
                     >
-                      {item.status}
+                      {item.priority}
                     </SeverityPill>
                   </TableCell>
                 </TableRow>
