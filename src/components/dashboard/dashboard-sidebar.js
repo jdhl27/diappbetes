@@ -5,6 +5,8 @@ import { Cog as CogIcon } from "../../icons/cog";
 import { User as UserIcon } from "../../icons/user";
 import { Users as UsersIcon } from "../../icons/users";
 import { XCircle as XCircleIcon } from "../../icons/x-circle";
+import { Observations as ObservationsIcon } from "../../icons/observation";
+import { Pen as PencilIcon } from "../../icons/pen";
 import { NavItem } from "./nav-item";
 import Logo from "../logo";
 import { useContext } from "react";
@@ -44,12 +46,12 @@ export const DashboardSidebar = (props) => {
       },
       {
         href: "/glucosa",
-        icon: <XCircleIcon fontSize="small" />,
+        icon: <PencilIcon fontSize="small" />,
         title: "Registros Glucosa",
       },
       {
         href: "/observaciones",
-        icon: <XCircleIcon fontSize="small" />,
+        icon: <ObservationsIcon fontSize="small" />,
         title: "Observaciones",
       },
       {
