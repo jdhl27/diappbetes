@@ -47,19 +47,21 @@ const RegisterGlucosa = () => {
       });
   };
 
-  const handleAdd = () => {
+  const handleAdd = (messageVoice) => {
     const dataSend = {
       ...data,
+      message: data.message || messageVoice,
       signupDate: new Date(),
       id_paciente: user._id,
     };
 
-    if (data.message && data.nivel) {
+    if ((data.message || messageVoice) && data.nivel) {
       setLoading(true);
       Glucose.PostGlucose(dataSend)
         .then((response) => {
           if (response.status >= 200 && response.status < 400) {
             setOpen(false);
+            setData({})
             getGlucosa();
           } else {
             Notify("Hubo un error", "error");
@@ -101,6 +103,16 @@ const RegisterGlucosa = () => {
             placeholder="Síntomas relevantes"
             label="Mensaje"
             onchange={(value) => {
+              setData({
+                ...data,
+                message: value,
+              });
+            }}
+            onchangeVoice={(value) => {
+              if (value?.includes("enviar")) {
+                value = value?.replace("enviar", "");
+                handleAdd(value);
+              }
               setData({
                 ...data,
                 message: value,

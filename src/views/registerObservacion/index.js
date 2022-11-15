@@ -66,6 +66,7 @@ const RegisterObservacion = () => {
         .then((response) => {
           if (response.status >= 200 && response.status < 400) {
             setOpen(false);
+            setData({})
             getObservations();
           } else {
             Notify("Hubo un error", "error");
