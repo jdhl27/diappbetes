@@ -99,7 +99,6 @@ function Register() {
     if (validation && validationPass && validationPass2) {
       setLoading(true);
       delete dataSend["passwordConfirm"];
-      console.log(dataSend);
       User.PostUserRegister(dataSend)
         .then((response) => {
           if (response.status >= 200 && response.status < 400) {

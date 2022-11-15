@@ -20,7 +20,7 @@ export const DashboardSidebar = (props) => {
   if (user?.isMedical) {
     items = [
       {
-        href: "/pacientes",
+        href: "/",
         icon: <UsersIcon fontSize="small" />,
         title: "Pacientes",
       },
