@@ -2,28 +2,20 @@ import { Box, Container } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { DashboardLayout } from "../../components/dashboard/dashboard-layout";
 import Loading from "../../components/loading";
-import BasicModal from "../../components/modal";
-import Input from "../../components/input";
-import ButtonComponent from "../../components/button";
 import { ListResults } from "../../components/tableData/list-results";
 import { ListToolbar } from "../../components/tableData/list-toolbar";
-import TextAreaComponent from "../../components/textArea";
 import { Notify } from "../../components/notify";
 import User from "../../API/endpoints/user";
 import UserContext from "../../contexts/user/userContext";
+import { useNavigate } from "react-router-dom";
 
 const ListPatient = () => {
   const [loading, setLoading] = useState(true);
-
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const [data, setData] = useState({});
   const [dataAll, setDataAll] = useState([]);
 
   // Context for user selected
   const { user } = useContext(UserContext);
-  const userData = JSON.parse(localStorage.getItem("user"));
+  const navigate = useNavigate();
 
   useEffect(() => {
     getPatients();
@@ -33,8 +25,9 @@ const ListPatient = () => {
     setLoading(true);
     User.GetPatient()
       .then((response) => {
+        console.log("vea su respuesta: ", response);
         if (response.status >= 200 && response.status < 400) {
-          setDataAll(response?.data);
+          setDataAll(response?.data?.reverse());
         } else {
           Notify("Ocurrió un error", "error");
         }
@@ -60,7 +53,6 @@ const ListPatient = () => {
         <Container maxWidth={false}>
           <ListToolbar
             title={"Pacientes"}
-            onClickAction={handleOpen}
             titleButton={"Agregar observación"}
             hidden={false}
           />
@@ -69,8 +61,8 @@ const ListPatient = () => {
               type={"patient"}
               dataHeader={["Reporte pacientes", "Nombre", "Fecha", "Prioridad"]}
               data={dataAll}
-              onClickUser={(id) => {
-                // console.log("click user: ", id);
+              onClickUser={(item) => {
+                navigate(`/pacientes/${item?.id_paciente}/`);
               }}
             />
           </Box>
