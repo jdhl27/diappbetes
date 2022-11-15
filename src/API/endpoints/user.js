@@ -16,6 +16,14 @@ class User {
   GetUser = (params = {}) => {
     return new API("user/").get(params);
   };
+
+  GetUserId = (params = {}) => {
+    return new API("userId/").get(params);
+  };
+
+  GetPatient = (params = {}) => {
+    return new API("patients/").get(params);
+  };
 }
 
 export default new User();
