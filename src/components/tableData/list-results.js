@@ -18,6 +18,8 @@ import {
 import { getInitials } from "../../utils/get-initials";
 import { SeverityPill } from "../severity-pill";
 import { Files as FilesIcon } from "../../icons/files";
+import Lottie from "lottie-react";
+import emptyAnimations from "../../assets/animations/empty.json";
 
 export const ListResults = ({
   data = [],
@@ -195,45 +197,62 @@ export const ListResults = ({
     return array;
   };
 
-  return (
-    <Card {...rest}>
-      <PerfectScrollbar>
-        <Box sx={{ minWidth: 1050 }}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                {/* <TableCell padding="checkbox"></TableCell> */}
-                {dataHeader.map((header) => (
-                  <TableCell>{header}</TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data?.slice(0, limit)?.map((item) => (
-                <TableRow
-                  hover
-                  key={item.id}
-                  selected={selectedCustomerIds === item._id}
-                  onClick={(event) => handleSelectOne(event, item._id, item)}
-                  style={{ cursor: "pointer" }}
-                >
-                  {renderDataRow(item)}
+  if (data.length > 0) {
+    return (
+      <Card {...rest}>
+        <PerfectScrollbar>
+          <Box sx={{ minWidth: 1050 }}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  {/* <TableCell padding="checkbox"></TableCell> */}
+                  {dataHeader.map((header) => (
+                    <TableCell>{header}</TableCell>
+                  ))}
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </Box>
-      </PerfectScrollbar>
-      <TablePagination
-        component="div"
-        count={data.length}
-        onPageChange={handlePageChange}
-        onRowsPerPageChange={handleLimitChange}
-        page={page}
-        rowsPerPage={limit}
-        rowsPerPageOptions={[5, 10, 25]}
-      />
-    </Card>
+              </TableHead>
+              <TableBody>
+                {data?.slice(0, limit)?.map((item) => (
+                  <TableRow
+                    hover
+                    key={item.id}
+                    selected={selectedCustomerIds === item._id}
+                    onClick={(event) => handleSelectOne(event, item._id, item)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {renderDataRow(item)}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </Box>
+        </PerfectScrollbar>
+        <TablePagination
+          component="div"
+          count={data.length}
+          onPageChange={handlePageChange}
+          onRowsPerPageChange={handleLimitChange}
+          page={page}
+          rowsPerPage={limit}
+          rowsPerPageOptions={[5, 10, 25]}
+        />
+      </Card>
+    );
+  }
+
+  return (
+    <Lottie
+      animationData={emptyAnimations}
+      loop={true}
+      style={{
+        width: "34%",
+        marginLeft: "auto",
+        marginRight: "auto",
+        left: 0,
+        right: 0,
+        textAlign: "center",
+      }}
+    />
   );
 };
 
