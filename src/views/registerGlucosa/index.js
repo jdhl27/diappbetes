@@ -120,6 +120,7 @@ const RegisterGlucosa = () => {
             title={"Registros"}
             onClickAction={handleOpen}
             titleButton={"Agregar registro"}
+            hidden={!user?.isMedical}
           />
           <Box sx={{ mt: 3 }}>
             <ListResults
