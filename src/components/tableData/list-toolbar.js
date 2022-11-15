@@ -26,21 +26,23 @@ export const ListToolbar = (props) => (
       <Typography sx={{ m: 1 }} variant="h4">
         {props?.title}
       </Typography>
-      <Box sx={{ m: 1 }}>
-        <Button startIcon={<UploadIcon fontSize="small" />} sx={{ mr: 1 }}>
-          Importar
-        </Button>
-        <Button startIcon={<DownloadIcon fontSize="small" />} sx={{ mr: 1 }}>
-          Exportar
-        </Button>
-        <Button
-          color="primary"
-          variant="contained"
-          onClick={props.onClickAction}
-        >
-          {props.titleButton}
-        </Button>
-      </Box>
+      {props.hidden ? (
+        <Box sx={{ m: 1 }}>
+          <Button startIcon={<UploadIcon fontSize="small" />} sx={{ mr: 1 }}>
+            Importar
+          </Button>
+          <Button startIcon={<DownloadIcon fontSize="small" />} sx={{ mr: 1 }}>
+            Exportar
+          </Button>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={props.onClickAction}
+          >
+            {props.titleButton}
+          </Button>
+        </Box>
+      ) : null}
     </Box>
     {/* <Box sx={{ mt: 3 }}>
       <Card>

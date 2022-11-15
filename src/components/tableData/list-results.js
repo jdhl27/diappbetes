@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import {
   Avatar,
   Box,
+  Button,
   Card,
   Table,
   TableBody,
@@ -16,11 +17,14 @@ import {
 } from "@mui/material";
 import { getInitials } from "../../utils/get-initials";
 import { SeverityPill } from "../severity-pill";
+import { Files as FilesIcon } from "../../icons/files";
+import user from "../../API/endpoints/user";
 
 export const ListResults = ({
   data = [],
   onClickUser,
   dataHeader = [],
+  type = "register",
   ...rest
 }) => {
   const [selectedCustomerIds, setSelectedCustomerIds] = useState([]);
@@ -38,6 +42,159 @@ export const ListResults = ({
 
   const handlePageChange = (event, newPage) => {
     setPage(newPage);
+  };
+
+
+  const renderDataRow = (item) => {
+    if (type === "register") {
+      return (
+        <>
+          <TableCell>
+            <Box
+              sx={{
+                alignItems: "center",
+                display: "flex",
+              }}
+            >
+              {item?.avatar && (
+                <Avatar src={item.avatar} sx={{ mr: 2 }}>
+                  {getInitials(item.message)}
+                </Avatar>
+              )}
+              <Typography color="textPrimary" variant="body1">
+                {item.message}
+              </Typography>
+            </Box>
+          </TableCell>
+          <TableCell>{item.nivel}</TableCell>
+          <TableCell>
+            {format(new Date(item.signupDate), "dd/MM/yyyy")}-{" "}
+            {format(new Date(item.signupDate), "HH:mm")}
+          </TableCell>
+          <TableCell>
+            <SeverityPill
+              color={
+                (item.priority === "normal" && "success") ||
+                (item.priority === "baja" && "warning") ||
+                "error"
+              }
+            >
+              {item.priority}
+            </SeverityPill>
+          </TableCell>
+        </>
+      );
+    }
+
+    if (type === "observation") {
+      return (
+        <>
+          <TableCell>
+            <Box
+              sx={{
+                alignItems: "center",
+                display: "flex",
+              }}
+            >
+              <Typography color="textPrimary" variant="body1">
+                {item.recommendations}
+              </Typography>
+            </Box>
+          </TableCell>
+          <TableCell>{item.id_medico}</TableCell>
+          <TableCell>
+            {format(new Date(item.signupDate), "dd/MM/yyyy")}-{" "}
+            {format(new Date(item.signupDate), "HH:mm")}
+          </TableCell>
+          <TableCell>
+            <Box
+              sx={{
+                alignItems: "center",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              {renderFiles(item.files)}
+            </Box>
+          </TableCell>
+        </>
+      );
+    }
+
+    if (type === "patient") {
+      return (
+        <>
+          <TableCell>
+            <Box
+              sx={{
+                alignItems: "center",
+                display: "flex",
+              }}
+            >
+              {/* {item?.avatar && ( */}
+              <Avatar src={item?.avatar} sx={{ mr: 2 }}>
+                {getInitials(item.displayName)}
+              </Avatar>
+              {/* )} */}
+              <Typography color="textPrimary" variant="body1">
+                {item.message}
+              </Typography>
+            </Box>
+          </TableCell>
+          <TableCell>{item.displayName}</TableCell>
+          <TableCell>
+            {format(new Date(item.signupDate), "dd/MM/yyyy")}-{" "}
+            {format(new Date(item.signupDate), "HH:mm")}
+          </TableCell>
+          <TableCell>
+            <SeverityPill
+              color={
+                (item.priority === "normal" && "success") ||
+                (item.priority === "baja" && "warning") ||
+                "error"
+              }
+            >
+              {item.priority}
+            </SeverityPill>
+          </TableCell>
+        </>
+      );
+    }
+  };
+
+  const renderFiles = (files) => {
+    let array = [];
+    for (let i = 0; i < files?.length; i++) {
+      const file = files[i];
+      array.push(
+        <Button
+          component="a"
+          startIcon={<FilesIcon />}
+          disableRipple
+          sx={{
+            backgroundColor: "rgba(255,255,255, 0.08)",
+            borderRadius: 1,
+            color: "#000",
+            justifyContent: "flex-start",
+            px: 3,
+            textAlign: "left",
+            textTransform: "none",
+            width: "100%",
+            "& .MuiButton-startIcon": {
+              color: "neutral.400",
+            },
+            "&:hover": {
+              backgroundColor: "rgba(255,255,255, 0.08)",
+            },
+          }}
+          href={file.url}
+          target={"_blank"}
+        >
+          <Box sx={{ flexGrow: 1 }}>{file.name}</Box>
+        </Button>
+      );
+    }
+    return array;
   };
 
   return (
@@ -62,46 +219,7 @@ export const ListResults = ({
                   onClick={(event) => handleSelectOne(event, item._id)}
                   style={{ cursor: "pointer" }}
                 >
-                  {/* <TableCell padding="checkbox">
-                    <Checkbox
-                      checked={selectedCustomerIds.indexOf(item.id) !== -1}
-                      onChange={(event) => handleSelectOne(event, item.id)}
-                      value="true"
-                    />
-                  </TableCell> */}
-                  <TableCell>
-                    <Box
-                      sx={{
-                        alignItems: "center",
-                        display: "flex",
-                      }}
-                    >
-                      {item?.avatar && (
-                        <Avatar src={item.avatar} sx={{ mr: 2 }}>
-                          {getInitials(item.message)}
-                        </Avatar>
-                      )}
-                      <Typography color="textPrimary" variant="body1">
-                        {item.message}
-                      </Typography>
-                    </Box>
-                  </TableCell>
-                  <TableCell>{item.nivel}</TableCell>
-                  <TableCell>
-                    {format(new Date(item.signupDate), "dd/MM/yyyy")}/{" "}
-                    {format(new Date(item.signupDate), "HH:mm")}
-                  </TableCell>
-                  <TableCell>
-                    <SeverityPill
-                      color={
-                        (item.priority === "normal" && "success") ||
-                        (item.priority === "baja" && "warning") ||
-                        "error"
-                      }
-                    >
-                      {item.priority}
-                    </SeverityPill>
-                  </TableCell>
+                  {renderDataRow(item)}
                 </TableRow>
               ))}
             </TableBody>
