@@ -18,7 +18,6 @@ import {
 import { getInitials } from "../../utils/get-initials";
 import { SeverityPill } from "../severity-pill";
 import { Files as FilesIcon } from "../../icons/files";
-import user from "../../API/endpoints/user";
 
 export const ListResults = ({
   data = [],
@@ -31,9 +30,9 @@ export const ListResults = ({
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
 
-  const handleSelectOne = (event, id) => {
+  const handleSelectOne = (event, id, user) => {
     setSelectedCustomerIds(id);
-    onClickUser(id);
+    onClickUser(user);
   };
 
   const handleLimitChange = (event) => {
@@ -43,7 +42,6 @@ export const ListResults = ({
   const handlePageChange = (event, newPage) => {
     setPage(newPage);
   };
-
 
   const renderDataRow = (item) => {
     if (type === "register") {
@@ -216,7 +214,7 @@ export const ListResults = ({
                   hover
                   key={item.id}
                   selected={selectedCustomerIds === item._id}
-                  onClick={(event) => handleSelectOne(event, item._id)}
+                  onClick={(event) => handleSelectOne(event, item._id, item)}
                   style={{ cursor: "pointer" }}
                 >
                   {renderDataRow(item)}
