@@ -18,9 +18,6 @@ export const ProtectedRoutes = ({
     updateUser(JSON.parse(userData));
   }
 
-  console.log("TOKEN: ", authToken);
-  console.log("user: ", user);
-
   if (!authToken) {
     return <Navigate to={redirectTo} />;
   }

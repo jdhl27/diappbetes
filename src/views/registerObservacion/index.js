@@ -16,7 +16,6 @@ const RegisterObservacion = () => {
   const [loading, setLoading] = useState(true);
 
   const { userId } = useParams();
-  console.log(userId);
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -137,9 +136,7 @@ const RegisterObservacion = () => {
               type={"observation"}
               dataHeader={["Mensaje", "Médico", "Fecha", "Documentos"]}
               data={dataAll}
-              onClickUser={(id) => {
-                // console.log("click user: ", id);
-              }}
+              onClickUser={(id) => {}}
             />
           </Box>
         </Container>

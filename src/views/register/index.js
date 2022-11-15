@@ -93,8 +93,7 @@ function Register() {
       data.password &&
       data.passwordConfirm;
     const validationPass = data.password === data.passwordConfirm;
-    // const validationPass2 = regexPass.test(data.password);
-    const validationPass2 = true;
+    const validationPass2 = regexPass.test(data.password);
 
     if (validation && validationPass && validationPass2) {
       setLoading(true);

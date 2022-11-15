@@ -128,9 +128,7 @@ const RegisterGlucosa = () => {
               loading={loading}
               dataHeader={["Mensaje", "Nivel registrado", "Fecha", "Prioridad"]}
               data={dataAll}
-              onClickUser={(id, idUser) => {
-                // console.log("click user: ", id);
-              }}
+              onClickUser={(id, idUser) => {}}
             />
           </Box>
         </Container>

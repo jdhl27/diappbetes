@@ -25,7 +25,6 @@ const ListPatient = () => {
     setLoading(true);
     User.GetPatient()
       .then((response) => {
-        console.log("vea su respuesta: ", response);
         if (response.status >= 200 && response.status < 400) {
           setDataAll(response?.data?.reverse());
         } else {

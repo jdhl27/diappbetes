@@ -16,7 +16,6 @@ import User from "../../API/endpoints/user";
 
 const ListGlucosaMedical = () => {
   const { userId } = useParams();
-  console.log(userId);
 
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
@@ -53,7 +52,6 @@ const ListGlucosaMedical = () => {
     setLoading(true);
     Glucose.GetAllGlucoses({ id_paciente: userId })
       .then((response) => {
-        console.log("peti: ", response);
         if (response.status >= 200 && response.status < 400) {
           setDataAll(response?.data?.reverse());
         } else {
@@ -145,9 +143,7 @@ const ListGlucosaMedical = () => {
               loading={loading}
               dataHeader={["Mensaje", "Nivel registrado", "Fecha", "Prioridad"]}
               data={dataAll}
-              onClickUser={(id) => {
-                // console.log("click user: ", id);
-              }}
+              onClickUser={(id) => {}}
             />
           </Box>
         </Container>
