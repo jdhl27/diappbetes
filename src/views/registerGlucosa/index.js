@@ -50,6 +50,7 @@ const RegisterGlucosa = () => {
   const handleAdd = () => {
     const dataSend = {
       ...data,
+      signupDate: new Date(),
       id_paciente: user._id,
     };
 
@@ -95,6 +96,7 @@ const RegisterGlucosa = () => {
             }}
           />
           <TextAreaComponent
+            value={data?.message}
             type="text"
             placeholder="Síntomas relevantes"
             label="Mensaje"

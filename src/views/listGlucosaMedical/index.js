@@ -68,6 +68,7 @@ const ListGlucosaMedical = () => {
   const handleAdd = (recommendationsVoice = null) => {
     const dataSend = {
       ...data,
+      signupDate: new Date(),
       recommendations: data.recommendations || recommendationsVoice,
       id_paciente: userId,
       id_medico: user._id,

@@ -79,6 +79,7 @@ function Register() {
   const handleRegister = () => {
     const dataSend = {
       ...data,
+      signupDate: new Date(),
       displayName: `${data?.firstName} ${data?.lastName}`,
     };
 
