@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { Box, Button, ListItem } from "@mui/material";
-import Links from "../links";
 import { NavLink, useLocation } from "react-router-dom";
 
 export const NavItem = (props) => {

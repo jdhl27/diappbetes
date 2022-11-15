@@ -2,6 +2,7 @@ import axios from "axios";
 import { Service } from "axios-middleware";
 
 const base = "https://api-diappbetes.vercel.app/api/"; //Server Prod.
+// const base = "http://localhost:3000/api/"; //Server dev.
 
 const localStorage = window.localStorage;
 
@@ -42,7 +43,6 @@ class Request {
       if (token != null) {
         config.headers["Authorization"] = "Bearer " + token;
       }
-      // console.log("config", config);
       return config;
     });
 
