@@ -8,51 +8,75 @@ import {
   Divider,
   Typography,
 } from "@mui/material";
-import { useContext } from "react";
-import UserContext from "../../contexts/user/userContext";
 
 export const AccountProfile = (props) => {
-  // Context for user selected
-  const { user } = useContext(UserContext);
-
   return (
-    <Card {...props}>
+    <Card
+      {...props}
+      sx={props.isMedical ? { backgroundColor: "#03a9f41a" } : null}
+    >
       <CardContent>
         <Box
           sx={{
             alignItems: "center",
+            justifyContent: "center",
             display: "flex",
-            flexDirection: "column",
+            flexDirection: props.isMedical ? "row" : "column",
           }}
         >
           <Avatar
-            src={user.avatar}
+            src={props.user.avatar}
             sx={{
               height: 64,
               mb: 2,
               width: 64,
             }}
           />
-          <Typography color="textPrimary" gutterBottom variant="h5">
-            {user.displayName}
-          </Typography>
-          {user?.city && (
-            <Typography color="textSecondary" variant="body2">
-              {`${user?.city} ${user?.country}`}
+          <Box
+            sx={{
+              textAlign: "center",
+              marginLeft: props.isMedical ? 2 : 0,
+            }}
+          >
+            <Typography
+              color="textPrimary"
+              gutterBottom
+              variant={props.isMedical ? "h6" : "h5"}
+            >
+              {props.user.displayName}
             </Typography>
-          )}
+            {props.user?.city && (
+              <Typography color="textSecondary" variant="body2">
+                {`${props.user?.city} ${props.user?.country}`}
+              </Typography>
+            )}
 
-          <Typography color="textSecondary" variant="body2">
-            {user.isMedical ? "Médico" : "Paciente"}
-          </Typography>
+            <Typography color="textSecondary" variant="body2">
+              {props.user.isMedical
+                ? "Médico"
+                : props.isMedical
+                ? "Mi Médico"
+                : "Paciente"}
+            </Typography>
+            {props.user.isMedical ? (
+              <Typography variant="body2">
+                Celular: {props.user.phone} <br />
+                {props.user.email}
+              </Typography>
+            ) : null}
+          </Box>
         </Box>
       </CardContent>
-      <Divider />
-      <CardActions>
-        <Button color="primary" fullWidth variant="text">
-          Cambiar foto
-        </Button>
-      </CardActions>
+      {!props.isMedical ? (
+        <>
+          <Divider />
+          <CardActions>
+            <Button color="primary" fullWidth variant="text">
+              Cambiar foto
+            </Button>
+          </CardActions>
+        </>
+      ) : null}
     </Card>
   );
 };
