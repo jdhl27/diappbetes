@@ -58,6 +58,7 @@ const ListPatient = () => {
           />
           <Box sx={{ mt: 3 }}>
             <ListResults
+              loading={loading}
               type={"patient"}
               dataHeader={["Reporte pacientes", "Nombre", "Fecha", "Prioridad"]}
               data={dataAll}

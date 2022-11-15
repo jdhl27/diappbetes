@@ -26,6 +26,7 @@ export const ListResults = ({
   onClickUser,
   dataHeader = [],
   type = "register",
+  loading = false,
   ...rest
 }) => {
   const [selectedCustomerIds, setSelectedCustomerIds] = useState([]);
@@ -240,20 +241,22 @@ export const ListResults = ({
     );
   }
 
-  return (
-    <Lottie
-      animationData={emptyAnimations}
-      loop={true}
-      style={{
-        width: "34%",
-        marginLeft: "auto",
-        marginRight: "auto",
-        left: 0,
-        right: 0,
-        textAlign: "center",
-      }}
-    />
-  );
+  if (!loading) {
+    return (
+      <Lottie
+        animationData={emptyAnimations}
+        loop={true}
+        style={{
+          width: "34%",
+          marginLeft: "auto",
+          marginRight: "auto",
+          left: 0,
+          right: 0,
+          textAlign: "center",
+        }}
+      />
+    );
+  }
 };
 
 ListResults.propTypes = {

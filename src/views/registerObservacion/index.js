@@ -133,6 +133,7 @@ const RegisterObservacion = () => {
           />
           <Box sx={{ mt: 3 }}>
             <ListResults
+              loading={loading}
               type={"observation"}
               dataHeader={["Mensaje", "Médico", "Fecha", "Documentos"]}
               data={dataAll}

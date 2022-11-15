@@ -46,7 +46,7 @@ const ListGlucosaMedical = () => {
         setLoading(false);
       });
     getGlucosa();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
   const getGlucosa = () => {
@@ -142,6 +142,7 @@ const ListGlucosaMedical = () => {
           />
           <Box sx={{ mt: 3 }}>
             <ListResults
+              loading={loading}
               dataHeader={["Mensaje", "Nivel registrado", "Fecha", "Prioridad"]}
               data={dataAll}
               onClickUser={(id) => {

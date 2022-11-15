@@ -125,6 +125,7 @@ const RegisterGlucosa = () => {
           />
           <Box sx={{ mt: 3 }}>
             <ListResults
+              loading={loading}
               dataHeader={["Mensaje", "Nivel registrado", "Fecha", "Prioridad"]}
               data={dataAll}
               onClickUser={(id, idUser) => {
