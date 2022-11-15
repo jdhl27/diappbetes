@@ -1,5 +1,5 @@
 import Login from "./views/login";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Register from "./views/register";
 import Dashboard from "./views/dashboard";
@@ -14,7 +14,7 @@ import Settings from "./views/settings";
 import ListPatient from "./views/listPatient";
 import RegisterObservacion from "./views/registerObservacion";
 import { registerChartJs } from "./utils/register-chart-js";
-import Page404 from "./views/404";
+// import Page404 from "./views/404";
 import AuthState from "./contexts/auth";
 import { ProtectedRoutes } from "./components/protectedRoutes";
 import { ValidateUser } from "./utils/validate-user";
@@ -34,7 +34,7 @@ function App() {
           <div className="App">
             <ToastContainer />
             <Routes>
-              <Route path="*" element={<Page404 />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route element={<ProtectedRoutes />}>
