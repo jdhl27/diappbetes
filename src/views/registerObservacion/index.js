@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { DashboardLayout } from "../../components/dashboard/dashboard-layout";
 import Loading from "../../components/loading";
 import BasicModal from "../../components/modal";
-import Input from "../../components/input";
 import ButtonComponent from "../../components/button";
 import { ListResults } from "../../components/tableData/list-results";
 import { ListToolbar } from "../../components/tableData/list-toolbar";
@@ -11,9 +10,13 @@ import TextAreaComponent from "../../components/textArea";
 import { Notify } from "../../components/notify";
 import Observation from "../../API/endpoints/observation";
 import UserContext from "../../contexts/user/userContext";
+import { useParams } from "react-router-dom";
 
 const RegisterObservacion = () => {
   const [loading, setLoading] = useState(true);
+
+  const { userId } = useParams();
+  console.log(userId);
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -27,14 +30,17 @@ const RegisterObservacion = () => {
 
   useEffect(() => {
     getObservations();
-  }, [user]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, userId]);
 
   const getObservations = () => {
     setLoading(true);
-    Observation.GetAllObservations({ id_paciente: user._id || userData?._id })
+    Observation.GetAllObservations({
+      id_paciente: userId || user._id || userData?._id,
+    })
       .then((response) => {
         if (response.status >= 200 && response.status < 400) {
-          setDataAll(response?.data);
+          setDataAll(response?.data?.reverse());
         } else {
           Notify("Ocurrió un error", "error");
         }
@@ -49,8 +55,8 @@ const RegisterObservacion = () => {
   const handleAdd = () => {
     const dataSend = {
       ...data,
-      id_paciente: user._id,
-      id_medico: user.id_medico,
+      id_paciente: userId,
+      id_medico: user._id,
     };
 
     if (data.recommendations) {
