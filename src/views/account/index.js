@@ -1,6 +1,5 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
-import ReactLoading from "react-loading";
 import { AccountProfile } from "../../components/account/account-profile";
 import { AccountProfileDetails } from "../../components/account/account-profile-details";
 import { DashboardLayout } from "../../components/dashboard/dashboard-layout";
