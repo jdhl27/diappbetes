@@ -51,14 +51,15 @@ const RegisterObservacion = () => {
       });
   };
 
-  const handleAdd = () => {
+  const handleAdd = (recommendationsVoice) => {
     const dataSend = {
       ...data,
+      recommendations: data.recommendations || recommendationsVoice,
       id_paciente: userId,
       id_medico: user._id,
     };
 
-    if (data.recommendations) {
+    if (data.recommendations || recommendationsVoice) {
       setLoading(true);
       Observation.PostObservation(dataSend)
         .then((response) => {
@@ -101,10 +102,21 @@ const RegisterObservacion = () => {
               }}
             /> */}
             <TextAreaComponent
+              value={data?.recommendations}
               type="text"
               placeholder="Recuerda seguir el tratamiento..."
               label="Mensaje"
               onchange={(value) => {
+                setData({
+                  ...data,
+                  recommendations: value,
+                });
+              }}
+              onchangeVoice={(value) => {
+                if (value?.includes("enviar")) {
+                  value = value?.replace("enviar", "");
+                  handleAdd(value);
+                }
                 setData({
                   ...data,
                   recommendations: value,

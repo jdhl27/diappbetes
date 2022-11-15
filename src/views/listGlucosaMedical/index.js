@@ -65,14 +65,15 @@ const ListGlucosaMedical = () => {
       });
   };
 
-  const handleAdd = () => {
+  const handleAdd = (recommendationsVoice = null) => {
     const dataSend = {
       ...data,
+      recommendations: data.recommendations || recommendationsVoice,
       id_paciente: userId,
       id_medico: user._id,
     };
 
-    if (data.recommendations) {
+    if (data.recommendations || recommendationsVoice) {
       setLoading(true);
       Observation.PostObservation(dataSend)
         .then((response) => {
@@ -102,10 +103,21 @@ const ListGlucosaMedical = () => {
             <h2 className="subtitle">Registro de Observación</h2>
 
             <TextAreaComponent
+              value={data?.recommendations}
               type="text"
               placeholder="Recuerda seguir el tratamiento..."
               label="Mensaje"
               onchange={(value) => {
+                setData({
+                  ...data,
+                  recommendations: value,
+                });
+              }}
+              onchangeVoice={(value) => {
+                if (value?.includes("enviar")) {
+                  value = value?.replace("enviar", "");
+                  handleAdd(value);
+                }
                 setData({
                   ...data,
                   recommendations: value,
