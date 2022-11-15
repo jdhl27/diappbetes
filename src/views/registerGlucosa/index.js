@@ -27,6 +27,7 @@ const RegisterGlucosa = () => {
 
   useEffect(() => {
     getGlucosa();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const getGlucosa = () => {
@@ -34,7 +35,7 @@ const RegisterGlucosa = () => {
     Glucose.GetAllGlucoses({ id_paciente: user._id || userData?._id })
       .then((response) => {
         if (response.status >= 200 && response.status < 400) {
-          setDataAll(response?.data);
+          setDataAll(response?.data?.reverse());
         } else {
           Notify("Ocurrió un error", "error");
         }
@@ -126,7 +127,7 @@ const RegisterGlucosa = () => {
             <ListResults
               dataHeader={["Mensaje", "Nivel registrado", "Fecha", "Prioridad"]}
               data={dataAll}
-              onClickUser={(id) => {
+              onClickUser={(id, idUser) => {
                 // console.log("click user: ", id);
               }}
             />
