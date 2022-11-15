@@ -10,7 +10,14 @@ export const ProtectedRoutes = ({
 }) => {
   // Context for user selected
   const { authToken } = useContext(AuthContext);
-  const { user } = useContext(UserContext);
+  const { user, updateUser } = useContext(UserContext);
+
+  const userData = localStorage.getItem("user");
+
+  if (userData && (!user || Object.keys(user).length === 0)) {
+    updateUser(JSON.parse(userData));
+  }
+
   console.log("TOKEN: ", authToken);
   console.log("user: ", user);
 

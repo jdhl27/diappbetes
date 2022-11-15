@@ -1,5 +1,5 @@
 import Login from "./views/login";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Register from "./views/register";
 import Dashboard from "./views/dashboard";
@@ -8,6 +8,7 @@ import { theme } from "./theme";
 import { CssBaseline } from "@mui/material";
 import { ToastContainer } from "react-toastify";
 import RegisterGlucosa from "./views/registerGlucosa";
+import ListGlucosaMedical from "./views/listGlucosaMedical";
 import AccountUser from "./views/account";
 import Settings from "./views/settings";
 import ListPatient from "./views/listPatient";
@@ -23,7 +24,6 @@ import UserContext from "./contexts/user/userContext";
 registerChartJs();
 
 function App() {
-
   const { user } = useContext(UserContext);
 
   return (
@@ -40,16 +40,22 @@ function App() {
               <Route element={<ProtectedRoutes />}>
                 <Route
                   path="/"
-                  element={
-                    user?.isMedical ? <ListPatient /> : <Dashboard />
-                  }
+                  element={user?.isMedical ? <ListPatient /> : <Dashboard />}
                 />
                 <Route path="/glucosa" element={<RegisterGlucosa />} />
+                <Route
+                  path="/pacientes/:userId"
+                  element={<ListGlucosaMedical />}
+                />
                 <Route path="/cuenta" element={<AccountUser />} />
                 <Route path="/configuraciones" element={<Settings />} />
                 {/* <Route path="/pacientes" element={<ListPatient />} /> */}
                 <Route
                   path="/observaciones"
+                  element={<RegisterObservacion />}
+                />
+                <Route
+                  path="/observaciones/:userId"
                   element={<RegisterObservacion />}
                 />
               </Route>
