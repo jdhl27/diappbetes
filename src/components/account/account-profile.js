@@ -58,7 +58,7 @@ export const AccountProfile = (props) => {
                 ? "Mi Médico"
                 : "Paciente"}
             </Typography>
-            {props.user.isMedical ? (
+            {props.isMedical ? (
               <Typography variant="body2">
                 Celular: {props.user.phone} <br />
                 {props.user.email}
